@@ -9,7 +9,12 @@ class Type_product extends Model
 {
     use HasFactory;
     protected $guarded =[];
+    
     public function stokage() {
         return $this->hasMany(Stokage::class);
-        }
+    }
+
+    public function produits() {
+        return $this->hasMany(Produit::class);
+    }
 }

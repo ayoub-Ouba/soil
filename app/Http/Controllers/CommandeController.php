@@ -2,7 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Response;
+use App\Models\User;
+use App\Models\Commande;
+use App\Models\Type_product;
+use App\Models\Produit;
+use App\Models\Design;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class CommandeController extends Controller
 {
@@ -13,8 +21,10 @@ class CommandeController extends Controller
      */
     public function index()
     {
-       
-        return view("admin.commande");
+        $commandes=Commande::where('id_user', auth()->user()->id)->get();
+        $types_produits=Type_product::all();
+        $designs=Design::where('id_user',auth()->user()->id)->get();
+        return view("admin.commande")->with(["commandes"=>$commandes, "types_produits"=>$types_produits, "designs"=>$designs]);
     }
 
     /**
@@ -35,7 +45,23 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate(['fullName'=>'required','quantite'=>'required|numeric',
+        // 'Total' => 'required|numeric','comment' => 'required',
+        // 'adress' => 'required','number' => 'required', 'datecommande' => 'required|date',
+        // 'datevalidation' => 'required|date', 'datelivraison' => 'required|date']);
+        $commande=new Commande();
+        $commande->fullName=$request->full_name;
+        $commande->quantite=$request->quantite;
+        $commande->Total=$request->total;
+        $commande->comment=$request->comment;
+        $commande->adress=$request->adresse;
+        $commande->city=$request->city;
+        $commande->number=$request->number;
+        $commande->socialmedia=$request->socialmedia;
+        $commande->id_user=auth()->user()->id;
+        $commande->save();
+        return redirect()->route('commande.index')->with('success');
+        
     }
 
     /**
@@ -46,7 +72,7 @@ class CommandeController extends Controller
      */
     public function show($id)
     {
-        //
+        // return redirect()->route('commande.index')->with(['id_commande' => $id]);
     }
 
     /**
@@ -69,7 +95,17 @@ class CommandeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $commande=Commande::find($id);
+        $commande->fullName=$request->full_name;
+        $commande->quantite=$request->quantite;
+        $commande->Total=$request->total;
+        $commande->comment=$request->comment;
+        $commande->adress=$request->adresse;
+        $commande->city=$request->city;
+        $commande->number=$request->number;
+        $commande->socialmedia=$request->socialmedia;
+        $commande->save();
+        return redirect()->route('commande.index')->with('success');
     }
 
     /**
@@ -80,6 +116,9 @@ class CommandeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $commande=Commande::find($id);
+        Produit::where('id_commande', $id)->delete();
+        $commande->delete();
+        return redirect()->route('commande.index')->with('success');
     }
 }

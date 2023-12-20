@@ -41,6 +41,8 @@ Route::middleware(['auth','role:dropshiper'])->group(function () {
         return view('dropshiper.index');
     });
     Route::resource('/design', '\App\Http\Controllers\DesignController');
-
+    Route::resource('/commande', '\App\Http\Controllers\CommandeController');
+    Route::resource('/produit', '\App\Http\Controllers\ProduitController');
+    Route::post('produit/{id}', '\App\Http\Controllers\ProduitController@storewithCmd');
    
 });

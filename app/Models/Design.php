@@ -9,4 +9,10 @@ class Design extends Model
 {
     use HasFactory;
     protected $guarded =[];
+
+    public function produits() {
+        return $this->hasMany(Produit::class);
+    }
+
+
 }

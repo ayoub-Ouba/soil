@@ -9,7 +9,9 @@ class Commande extends Model
 {
     use HasFactory;
     protected $guarded =[];
+
     public function produits() { 
-        return $this->belongsTo(Produit::class); 
-        }
+        return $this->HasMany(Produit::class, 'id_commande','id'); 
+    }
+    
 }

@@ -17,6 +17,7 @@ class Produits extends Migration
             $table->id();
             $table->String("color");
             $table->String("taille");
+            $table->foreignId('id_commande')->references('id')->on('commandes');
             $table->foreignId('id_type')->references('id')->on('type_products');
             $table->foreignId('id_design')->references('id')->on('designs');
             $table->timestamps();
@@ -35,6 +36,8 @@ class Produits extends Migration
             $table->dropColumn('id_type');
             $table->dropForeign(['id_design']);
             $table->dropColumn('id_design');
+            $table->dropForeign(['id_commande']);
+            $table->dropColumn('id_commande');
         });
         Schema::dropIfExists('produits');
     }

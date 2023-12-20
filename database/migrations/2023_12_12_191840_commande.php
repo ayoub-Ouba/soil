@@ -15,11 +15,18 @@ class Commande extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->date("datecommande");
-            $table->String("state");
-            $table->String("city");
+            $table->String("fullName");
+            $table->float("Total");
+            $table->integer("quantite");
+            $table->String("comment");
             $table->String("adress");
+            $table->String("city");
             $table->String("number");
+            $table->date("datecommande")->default(DB::raw('CURRENT_DATE'));
+            $table->date("datevalidation")->nullable();
+            $table->date("datelivraison")->nullable();
+            $table->String("status")->default('prepared');
+            $table->String("socialmedia");
             $table->foreignId('id_user')->references('id')->on('users');
             $table->timestamps();
         });
