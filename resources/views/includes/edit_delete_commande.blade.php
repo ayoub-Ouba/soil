@@ -16,12 +16,12 @@
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
-                        <label for="full_name" class="col-sm-3 control-label">Full Name</label>
+                        <label for="full_name" class="col-sm-3 control-label">Order Name</label>
                         <input type="text" class="form-control" id="full_name" name="full_name" value="{{$commande->fullName}}" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="number" class="col-sm-3 control-label">Number</label>
+                        <label for="number" class="col-sm-3 control-label">Number Customer</label>
                         <input type="tel" class="form-control" id="number" name="number" value="{{$commande->number}}" required>
                     </div>
 
@@ -45,10 +45,10 @@
                         <input type="text" class="form-control" value="{{$commande->comment}}" id="comment" name="comment" required />
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="quantite">Quantite</label>
                         <input type="number" class="form-control" value="{{$commande->quantite}}" id="quantite" name="quantite" required />
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <label for="socialmedia">Social media</label>

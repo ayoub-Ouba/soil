@@ -6,6 +6,8 @@ use Response;
 use App\Models\User;
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use App\Models\Commande;
+
 use Illuminate\Support\Facades\Auth;
 
 class ProduitController extends Controller
@@ -42,14 +44,22 @@ class ProduitController extends Controller
     }
     public function storewithCmd(Request $request, $idCmd)
     {
+        $request->validate([
+            'color'=>'required','type'=>'required',
+            'design'=>'required']);
         $produit=new Produit();
+        $commande=Commande::find($idCmd);
         $produit->color=$request->color;
         $produit->taille=$request->taille;
         $produit->id_commande=$idCmd;
         $produit->id_type=$request->type;
         $produit->id_design=$request->design;
         $produit->save();
+    
+        $commande->quantite=$commande->produits->count();
+        $commande->save();
         return redirect()->route('commande.index')->with('success');
+
     }
 
     /**
@@ -102,6 +112,10 @@ class ProduitController extends Controller
     {
         $produit=Produit::find($id);
         $produit->delete();
+        $commande=Commande::find($produit->id_commande);
+        $commande->quantite=$commande->produits->count();
+        $commande->save();
         return redirect()->route('commande.index')->with('success');
+
     }
 }

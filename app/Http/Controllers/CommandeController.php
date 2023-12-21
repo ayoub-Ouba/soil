@@ -23,6 +23,7 @@ class CommandeController extends Controller
     {
         $commandes=Commande::where('id_user', auth()->user()->id)->get();
         $types_produits=Type_product::all();
+       
         $designs=Design::where('id_user',auth()->user()->id)->get();
         return view("admin.commande")->with(["commandes"=>$commandes, "types_produits"=>$types_produits, "designs"=>$designs]);
     }
@@ -51,7 +52,7 @@ class CommandeController extends Controller
         // 'datevalidation' => 'required|date', 'datelivraison' => 'required|date']);
         $commande=new Commande();
         $commande->fullName=$request->full_name;
-        $commande->quantite=$request->quantite;
+        $commande->quantite=0;
         $commande->Total=$request->total;
         $commande->comment=$request->comment;
         $commande->adress=$request->adresse;
@@ -97,7 +98,7 @@ class CommandeController extends Controller
     {
         $commande=Commande::find($id);
         $commande->fullName=$request->full_name;
-        $commande->quantite=$request->quantite;
+        // $commande->quantite=$request->quantite;
         $commande->Total=$request->total;
         $commande->comment=$request->comment;
         $commande->adress=$request->adresse;

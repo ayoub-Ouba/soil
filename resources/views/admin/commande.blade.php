@@ -38,25 +38,28 @@
                         <thead>
                             <tr>
                                 <!-- <th  data-priority="1" style="width: 20px;">Id</th> -->
-                                <th  data-priority="2" >Full Name</th>
+                                <th  data-priority="2" >Order Name </th>
                                 <th  data-priority="3"  style="width: 50px;" >Number</th>
                                 <th  data-priority="4" >Adress</th>
                                 <th  data-priority="5" >Total</th>
-                                <th  data-priority="6" >Comment</th>
+                                <th  data-priority="6" >Commentaire</th>
                                 <th  data-priority="7"  style="width: 20px;">Quantity</th>
                                 <th  data-priority="1"  style="width: 50px;">Social Media</th>
                                 <th  data-priority="8" >status</th><th  data-priority="9" >Date</th>
-                                <th data-priority="9" >products</th>
+                               
+                                    <th data-priority="9" >products </th>
+                                
                                 <th data-priority="7" >Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                                 <!-- <td></td> -->
+
                                 @foreach ($commandes as $commande)
                                 <tr>
-                                    <td>{{$commande->fullName}}</td><td> {{$commande->number}} </td><td>{{$commande->adress}}</td>
-                                    <td>{{$commande->Total}} </td><td > {{$commande->comment}} </td><td>{{$commande->quantite}}</td><td>{{$commande->socialmedia}}</td> <td>{{$commande->status}}</td>
+                                    <td>{{$commande->fullName}} </td><td> {{$commande->number}} </td><td>{{$commande->adress}}</td>
+                                    <td>{{$commande->Total}} </td><td > {{$commande->comment}} </td><td>{{$commande->produits->count()}}</td><td>{{$commande->socialmedia}}</td> <td>{{$commande->status}}</td>
                                     <td>
                                         <div class="wrapper">
                                                 <div class="icon facebook">
@@ -79,18 +82,19 @@
                                                 <!-- <div class="myDIV"><span> Date Livraison</span>   <span >01/01/2023</span></div> -->
                                     </td>
                                     <td>
+                                       
+                                            @foreach ($commande->produits as $produit)
+                                                <div class=" d-flex justify-content-between myDIV"> 
+                                                    <div class=" mt-1">{{$produit->design->design_name}} / {{$produit->color}} / {{$produit->taille}} / {{$produit->type_product->type_product}} </div>
+                                                    @if(auth()->user()->state=='dropshiper')
+                                                        <div class="hide ml-2">
+                                                            <a href="#editP{{$produit->id}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> </a>
+                                                            <a href="#deleteP{{$produit->id}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i></a>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @endforeach
                                         
-                                        @foreach ($commande->produits as $produit)
-                                            <div class=" d-flex justify-content-between myDIV"> 
-                                                <div class=" mt-1">{{$produit->design->design_name}} / {{$produit->color}} / {{$produit->taille}} / {{$produit->type_product->type_product}} </div>
-                                                @if(auth()->user()->state=='dropshiper')
-                                                    <div class="hide">
-                                                        <a href="#editP{{$produit->id}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> </a>
-                                                        <a href="#deleteP{{$produit->id}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i></a>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        @endforeach
                                         
                                         
                                     </td>

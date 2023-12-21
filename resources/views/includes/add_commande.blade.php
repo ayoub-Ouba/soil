@@ -15,12 +15,12 @@
                     <form method="POST" action="{{ route('commande.store') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="full_name">Full Name</label>
+                            <label for="full_name">Order Name</label>
                             <input type="text" class="form-control" placeholder="Enter Full Name" id="full_name" name="full_name" required />
                         </div>
 
                         <div class="form-group">
-                            <label for="number">Number</label>
+                            <label for="number">Number Customer</label>
                             <input type="tel" class="form-control" placeholder="Enter Number" id="number" name="number" required />
                         </div>
 
@@ -43,11 +43,11 @@
                             <label for="comment">Comment</label>
                             <input type="text" class="form-control" placeholder="Enter Comment" id="comment" name="comment" required />
                         </div>
-
+                    <!-- 
                         <div class="form-group">
                             <label for="quantite">Quantite</label>
                             <input type="number" class="form-control" placeholder="Enter Quantite" id="quantite" name="quantite" required />
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label for="socialmedia">Social media</label>

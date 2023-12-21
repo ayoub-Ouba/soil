@@ -29,7 +29,7 @@
                     @endphp
                         
                     <div class="form-group">
-                        {{$produit->taille}}
+                        
                         <label for="taille">Taille</label>
                         <select class="form-control" name="taille" id="taille">
                             @foreach ($T as $t)

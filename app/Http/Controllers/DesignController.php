@@ -17,7 +17,7 @@ class DesignController extends Controller
      */
     public function index()
     {
-        $designs=Design::all();
+        $designs=Design::where('id_user', auth()->user()->id)->get();;
         return view("admin.Design")->with(["designs"=>$designs]);
     }
 

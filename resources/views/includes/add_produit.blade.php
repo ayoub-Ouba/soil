@@ -12,10 +12,18 @@
 
             <h4 class="modal-title"><b>Add produit</b></h4>
             <span id="commandeIdPlaceholder"></span>            
-            <div class="modal-body">{{ $commande->id }}
+            <div class="modal-body">
 
                 <div class="card-body text-left">
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                     <form method="POST" action="produit/{{$commande->id}}">
                         @csrf
                         
