@@ -15,12 +15,12 @@
                     <form method="POST" action="{{ route('commande.store') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="full_name">Order Name</label>
+                            <label for="full_name">Client Name</label>
                             <input type="text" class="form-control" placeholder="Enter Full Name" id="full_name" name="full_name" required />
                         </div>
 
                         <div class="form-group">
-                            <label for="number">Number Customer</label>
+                            <label for="number">Phone Number</label>
                             <input type="tel" class="form-control" placeholder="Enter Number" id="number" name="number" required />
                         </div>
 
@@ -40,18 +40,19 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="comment">Comment</label>
-                            <input type="text" class="form-control" placeholder="Enter Comment" id="comment" name="comment" required />
+                            <label for="socialmedia">Social media</label>
+                            <select class="form-control" name="socialmedia" id="socialmedia">
+                                <option value="Facebook">Facebook</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Snapchat">Snapchat</option>
+                                <option value="TIKtok">TIKtok</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="Enter Social media" id="socialmediaV" name="socialmediaV" required />
                         </div>
-                    <!-- 
-                        <div class="form-group">
-                            <label for="quantite">Quantite</label>
-                            <input type="number" class="form-control" placeholder="Enter Quantite" id="quantite" name="quantite" required />
-                        </div> -->
 
                         <div class="form-group">
-                            <label for="socialmedia">Social media</label>
-                            <input type="text" class="form-control" placeholder="Enter Social media" id="socialmedia" name="socialmedia" required />
+                            <label for="comment">Comment</label>
+                            <textarea name="comment" class="form-control" id="comment" cols="30" rows="5" required></textarea>
                         </div>
                         
                         <div class="form-group">

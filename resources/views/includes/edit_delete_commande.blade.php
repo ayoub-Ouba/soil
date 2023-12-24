@@ -16,12 +16,12 @@
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
-                        <label for="full_name" class="col-sm-3 control-label">Order Name</label>
+                        <label for="full_name" class="control-label">Client Name</label>
                         <input type="text" class="form-control" id="full_name" name="full_name" value="{{$commande->fullName}}" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="number" class="col-sm-3 control-label">Number Customer</label>
+                        <label for="number" class="control-label">Phone Number</label>
                         <input type="tel" class="form-control" id="number" name="number" value="{{$commande->number}}" required>
                     </div>
 
@@ -41,19 +41,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="comment">Comment</label>
-                        <input type="text" class="form-control" value="{{$commande->comment}}" id="comment" name="comment" required />
+                        <label for="socialmedia">Social media</label>
+                        <select class="form-control" name="socialmedia" id="socialmedia">
+                            <option value="Facebook">Facebook</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Snapchat">Snapchat</option>
+                            <option value="TIKtok">TIKtok</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder="Enter Social media" id="socialmediaV" name="socialmediaV" required />
                     </div>
-
-                    <!-- <div class="form-group">
-                        <label for="quantite">Quantite</label>
-                        <input type="number" class="form-control" value="{{$commande->quantite}}" id="quantite" name="quantite" required />
-                    </div> -->
 
                     <div class="form-group">
-                        <label for="socialmedia">Social media</label>
-                        <input type="text" class="form-control" value="{{$commande->socialmedia}}" id="socialmedia" name="socialmedia" required />
-                    </div>
+                        <label for="comment">Comment</label>
+                        <textarea name="comment" class="form-control" id="comment" cols="30" rows="5" required></textarea>
+                    </div>  <address></address>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i

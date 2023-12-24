@@ -11,7 +11,7 @@ class Design extends Model
     protected $guarded =[];
 
     public function produits() {
-        return $this->hasMany(Produit::class);
+        return $this->hasMany(Produit::class, 'id_design', 'id');
     }
 
 

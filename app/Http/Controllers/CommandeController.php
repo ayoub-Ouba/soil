@@ -46,10 +46,9 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate(['fullName'=>'required','quantite'=>'required|numeric',
-        // 'Total' => 'required|numeric','comment' => 'required',
-        // 'adress' => 'required','number' => 'required', 'datecommande' => 'required|date',
-        // 'datevalidation' => 'required|date', 'datelivraison' => 'required|date']);
+        $request->validate(['comment'=>'required|max:250', 'number'=>'required|digits:10',
+        'full_name'=>'max:65', 'adresse'=>'max:150', 'city'=>'max:250', 'socialmediaV'=>'max:100']);
+
         $commande=new Commande();
         $commande->fullName=$request->full_name;
         $commande->quantite=0;
@@ -58,7 +57,7 @@ class CommandeController extends Controller
         $commande->adress=$request->adresse;
         $commande->city=$request->city;
         $commande->number=$request->number;
-        $commande->socialmedia=$request->socialmedia;
+        $commande->socialmedia=$request->socialmedia." : ".$request->socialmediaV;
         $commande->id_user=auth()->user()->id;
         $commande->save();
         return redirect()->route('commande.index')->with('success');
@@ -96,15 +95,17 @@ class CommandeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate(['comment'=>'required|max:250', 'number'=>'required|digits:10',
+        'full_name'=>'max:65', 'adresse'=>'max:150', 'city'=>'max:250', 'socialmediaV'=>'max:100']);
+
         $commande=Commande::find($id);
         $commande->fullName=$request->full_name;
-        // $commande->quantite=$request->quantite;
         $commande->Total=$request->total;
         $commande->comment=$request->comment;
         $commande->adress=$request->adresse;
         $commande->city=$request->city;
         $commande->number=$request->number;
-        $commande->socialmedia=$request->socialmedia;
+        $commande->socialmedia=$request->socialmedia." : ".$request->socialmediaV;
         $commande->save();
         return redirect()->route('commande.index')->with('success');
     }

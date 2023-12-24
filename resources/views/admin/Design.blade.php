@@ -66,10 +66,10 @@
                                             <button class="btn"> <i class='fa fa-download '></i></button>
                                         </div> -->
                                         <div class="container">
-                                            <img src="{{ asset('images/' . $design->{$designs_var[$i]}) }}" alt="Avatar" class="image" style="width:80%;height:160px" >
+                                            <img src="{{ asset('images/' . $design->{$designs_var[$i]}) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
                                             <div class="middle">
                                             <a href="{{ 'download/' . $design->{$designs_var[$i]} }}">
-                                                 <div class="text"><i class='fa fa-download '></i> Download </div></a>
+                                                 <div class="text"><i class='fa fa-download'></i>   </div></a>
                                             </div>
                                         </div>
                                     </td>
@@ -79,8 +79,11 @@
                                 @endfor
                                 <td style="width: 100px;" class="text-center">{{$design->version_design}}</td>
                                 <td style="width: 100px;">
+                                    
                                     <a href="#edit{{$design->id}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
+                                    @if ($design->produits()->count() < 1)
                                     <a href="#delete{{$design->id}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
