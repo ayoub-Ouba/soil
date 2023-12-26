@@ -1,7 +1,8 @@
 <?php $state = array("admin", "confirmateur","manager","printer");?>
 <!-- Edit -->
 @isset($commande)
-    
+
+{{-- {{ list($socialmediaType, $socialmediaValue) = explode(" : ", $commande->socialmedia);}} --}}
 
 <div class="modal fade" id="edit{{ $commande->id }}">
     <div class="modal-dialog">
@@ -40,21 +41,24 @@
                         <input type="number" class="form-control" value="{{$commande->Total}}" id="total" name="total" required />
                     </div>
 
+                    <?php
+                        $SM = explode(" : ", $commande->socialmedia, 2);
+                    ?>
                     <div class="form-group">
                         <label for="socialmedia">Social media</label>
                         <select class="form-control" name="socialmedia" id="socialmedia">
-                            <option value="Facebook">Facebook</option>
-                            <option value="Instagram">Instagram</option>
-                            <option value="Snapchat">Snapchat</option>
-                            <option value="TIKtok">TIKtok</option>
+                            <option value="Facebook" {{($SM[0]=="Facebook")?'selected':''}}>Facebook</option>
+                            <option value="Instagram" {{($SM[0]=="Instagram")?'selected':''}}>Instagram</option>
+                            <option value="Snapchat" {{($SM[0]=="Snapchat")?'selected':''}}>Snapchat</option>
+                            <option value="TikTok" {{($SM[0]=="TikTok")?'selected':''}}>TIKtok</option>
                         </select>
-                        <input type="text" class="form-control" placeholder="Enter Social media" id="socialmediaV" name="socialmediaV" required />
+                        <input type="text" class="form-control" id="socialmediaV" name="socialmediaV" value="{{$SM[1]}}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="comment">Comment</label>
-                        <textarea name="comment" class="form-control" id="comment" cols="30" rows="5" required></textarea>
-                    </div>  <address></address>
+                        <textarea name="comment" class="form-control" id="comment" cols="30" rows="5" required>{{$commande->comment}}</textarea>
+                    </div> 
 
             </div>
             <div class="modal-footer">
