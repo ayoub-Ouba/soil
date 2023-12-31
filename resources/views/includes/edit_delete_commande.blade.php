@@ -57,7 +57,7 @@
 
                     <div class="form-group">
                         <label for="comment">Comment</label>
-                        <textarea name="comment" class="form-control" id="comment" cols="30" rows="5" required>{{$commande->comment}}</textarea>
+                        <textarea name="comment" class="form-control" id="comment" cols="30" rows="5" >{{$commande->commentaire}}</textarea>
                     </div> 
 
             </div>

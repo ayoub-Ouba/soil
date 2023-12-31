@@ -7,6 +7,7 @@
         <title>SOIL</title>
         <meta content="Admin Dashboard" name="description" />
         <meta content="Themesbrand" name="author" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         @include('layouts.head')
     </head>
 <body>

@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('fullName');
             $table->string('email')->unique();
             $table->String('Number');
-            $table->enum('state',['admin','manager','confirmateur','dropshiper']);
+            $table->enum('state',['admin','manager','confirmateur','dropshiper','printer1','printer2']);
             $table->string('password');
             $table->string('image')->nullable();
             $table->rememberToken();

@@ -46,19 +46,21 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['comment'=>'required|max:250', 'number'=>'required|digits:10',
+        $request->validate(['comment'=>'max:250', 'number'=>'required|digits:10',
         'full_name'=>'max:65', 'adresse'=>'max:150', 'city'=>'max:250', 'socialmediaV'=>'max:100']);
 
         $commande=new Commande();
         $commande->fullName=$request->full_name;
         $commande->quantite=0;
         $commande->Total=$request->total;
-        $commande->comment=$request->comment;
+        $commande->commentaire=$request->comment;
         $commande->adress=$request->adresse;
         $commande->city=$request->city;
         $commande->number=$request->number;
         $commande->socialmedia=$request->socialmedia." : ".$request->socialmediaV;
         $commande->id_user=auth()->user()->id;
+    
+
         $commande->save();
         return redirect()->route('commande.index')->with('success');
         
@@ -95,7 +97,7 @@ class CommandeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(['comment'=>'required|max:250', 'number'=>'required|digits:10',
+        $request->validate(['comment'=>'max:250', 'number'=>'required|digits:10',
         'full_name'=>'max:65', 'adresse'=>'max:150', 'city'=>'max:250', 'socialmediaV'=>'max:100']);
 
         $commande=Commande::find($id);

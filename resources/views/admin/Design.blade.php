@@ -18,13 +18,10 @@
 @section('content')
 @include('includes.flash')
 <!--Show Validation Errors here-->
-@if ($errors->any())
+
+@if(session('error'))
     <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+        {{ session('error') }}
     </div>
 @endif
 <!--End showing Validation Errors here-->
@@ -93,6 +90,7 @@
              </div>
         </div>
     </div>
+
  </div> <!-- end col -->
 </div> <!-- end row -->
 @foreach ($designs as $design)

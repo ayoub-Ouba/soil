@@ -20,6 +20,8 @@ class Produits extends Migration
             $table->foreignId('id_commande')->references('id')->on('commandes');
             $table->foreignId('id_type')->references('id')->on('type_products');
             $table->foreignId('id_design')->references('id')->on('designs');
+            $table->boolean('print_design')->default(false);
+            $table->boolean('print_design_v_fnl')->default(false);
             $table->timestamps();
         });
     }

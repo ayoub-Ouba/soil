@@ -21,7 +21,7 @@
 
                         <div class="form-group">
                             <label for="number">Phone Number</label>
-                            <input type="tel" class="form-control" placeholder="Enter Number" id="number" name="number" required />
+                            <input type="tel" class="form-control" placeholder="Enter Number" id="number" name="number" maxlength="10" required />
                         </div>
 
                         <div class="form-group">
@@ -52,7 +52,7 @@
 
                         <div class="form-group">
                             <label for="comment">Comment</label>
-                            <textarea name="comment" class="form-control" id="comment" cols="30" rows="5" required></textarea>
+                            <textarea name="comment" class="form-control" id="comment" cols="30" rows="5" ></textarea>
                         </div>
                         
                         <div class="form-group">

@@ -20,7 +20,7 @@
                 </ul>
             </div>
             @endif
-                    <form method="POST" action="{{route('users.store')}}">
+                    <form method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="fullname">Full Name</label>
@@ -45,6 +45,8 @@
                                 <option value="confirmateur">Confirmator</option>
                                 <option value="manager">Manager</option>
                                 <option value="dropshiper">Dropshiper</option>
+                                <option value="printer1">printer 1</option>
+                                <option value="printer2">printer 2</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -54,12 +56,16 @@
                         </div>
                         <div class="form-group">
                             <label for="cpass">Confirmation Password</label>
-                            <input type="password" class="form-control"  id="cpass" name="password_confirmation"
-                                 />
+                            <input type="password" class="form-control"  id="cpass" name="password_confirmation" />
                         </div>
-
-                        <div class="form-group">
-
+                        <div class="form-group ">
+                            <label for="photo_profile">photo_profile</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="photo_profile"  name="photo_profile">
+                                <label class="custom-file-label" for="customFileLang">Select photo</label>
+                            </div>
+                        </div>
+                        
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">

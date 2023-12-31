@@ -59,7 +59,14 @@
                                 <tr>
                                     <td>{{$commande->id}} </td>
                                     <td>{{$commande->fullName}} </td><td> {{$commande->number}} </td><td>{{$commande->adress}}</td>
-                                    <td>{{$commande->Total}} </td><td > {{$commande->comment}} </td><td>{{$commande->quantite}}</td><td>{{$commande->socialmedia}}</td> <td>{{$commande->status}}</td>
+                                    <td>{{$commande->Total}} </td>
+                                    @if($commande->commentaire!=null)
+                                        <td > {{$commande->commentaire}} </td>
+                                    @else
+                                        <td>no comment </td>
+                                    @endif
+
+                                    <td>{{$commande->quantite}}</td><td>{{$commande->socialmedia}}</td> <td>{{$commande->status}}</td>
                                     <td>
                                         <div class="wrapper">
                                                 <div class="icon facebook">

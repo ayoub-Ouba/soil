@@ -13,5 +13,8 @@ class Commande extends Model
     public function produits() { 
         return $this->HasMany(Produit::class, 'id_commande','id'); 
     }
+    public function user() { 
+        return $this->belongsTo(User::class, 'id_user','id'); 
+    }
     
 }

@@ -81,21 +81,25 @@
         <li class="dropdown notification-list">
             <div class="dropdown notification-list nav-pro-img">
                 <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="assets/images/profile1.png"/>
+                    @if(Auth::user()->image=="profile.png")
+                        <img src="{{asset('images/profile.png')}}"/>
+                    @else
+                        <img src="{{asset('images/'.Auth::user()->image)}}" alt="{{Auth::user()->image}}"/>
+                    @endif
                 </a>
-                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                <!-- <div class="dropdown-menu dropdown-menu-right profile-dropdown "> -->
                     <!-- item-->
- {{--                    <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
+ <!-- {{--                    <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
             
                    <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings m-r-5"></i> Settings</a> 
-                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Lock screen</a>  --}}                   
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Lock screen</a>  --}}                    -->
+                    <!-- <div class="dropdown-divider"></div> -->
+                    <!-- <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"><i class="mdi mdi-power text-danger"></i> {{ __('Logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
-                </form>
-                </div>
+                </form> -->
+                <!-- </div> -->
             </div>
         </li>
 

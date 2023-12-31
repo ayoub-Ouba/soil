@@ -19,7 +19,7 @@ class Commande extends Migration
             $table->String("fullName");
             $table->float("Total");
             $table->integer("quantite");
-            $table->String("comment");
+            $table->String("commentaire")->nullable();
             $table->String("adress");
             $table->String("city");
             $table->String("number");
@@ -28,6 +28,8 @@ class Commande extends Migration
             $table->date("datelivraison")->nullable();
             $table->String("status")->default('prepared');
             $table->String("socialmedia");
+            $table->boolean("confirmation")->default(false);
+            $table->string("commentaire_confirmateur")->nullable();
             $table->foreignId('id_user')->references('id')->on('users');
             $table->timestamps();
         });
