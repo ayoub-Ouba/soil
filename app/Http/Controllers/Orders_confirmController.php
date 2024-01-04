@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Commande;
 use App\Models\Design;
+use App\Models\Produit;
 
 class Orders_confirmController extends Controller
 {
     public function index(){
         $commandes=Commande::whereDate('datecommande',date('y-m-d'))->get();
         $designs=Design::all();
-        return view("admin.index")->with(["commandes"=>$commandes,"designs"=>$designs]);
+        $produits=Produit::all();
+        return view("admin.index")->with(["commandes"=>$commandes,"designs"=>$designs, "produits"=>$produits]);
     }
     public function confirmation_order($id){
         $commande=Commande::find($id);
