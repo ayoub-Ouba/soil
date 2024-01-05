@@ -330,7 +330,8 @@
                             </td>
                             <td >
                                 <div class="form-check form-switch ml-3" >
-                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="confirmation"  onclick="event.preventDefault();document.getElementById('confirmation').submit();" 
+                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="confirmation"  
+                                        onclick="event.preventDefault();document.getElementById('confirmation').submit();" 
                                     {{$commande->confirmation==1?'checked':''}} >
                                     
                                     <label class="form-check-label" for="flexSwitchCheckChecked"></label>
