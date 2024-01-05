@@ -410,110 +410,179 @@
                             <tr>
                                 <!-- <th  data-priority="1" style="width: 20px;">Id</th> -->
                                 <th  data-priority="1" >Order</th>
-                                <!-- <th  data-priority="1" >Comment</th> -->
-                                <!-- <th  data-priority="1" >Adress</th>
-                                <th  data-priority="1" >Client</th> -->
-                                <th  data-priority="6" >Design 1</th>
-                                <th  data-priority="6" >Design 2</th>
-                                <th  data-priority="2" >Design 3 </th>
-                                <th  data-priority="3"  >Design 4</th>
+                                <th  data-priority="2" >Design 1</th>
+                                <th  data-priority="3" >Design 2</th>
+                                <th  data-priority="4" >Design 3 </th>
+                                <th  data-priority="5"  >Design 4</th>
                                 <th  data-priority="6" >Color</th>
-                                <th  data-priority="6" >Size</th>
-                                <th  data-priority="6" >Design printed</th>
+                                <th  data-priority="7" >Size</th>
+                                <th  data-priority="8" >Type</th>
+                                <th  data-priority="9" >Comment</th>
+                                <th  data-priority="10" >Dropshiper</th>
+                                <th  data-priority="11" >Design printed</th>
                                
                                 
                             </tr>
                         </thead>
                         <tbody>
                         
-                        @foreach ($commandes as $commande)
+                        @foreach ($produits as $produit)
                         
-                        @foreach ($commande->produits as $produit)
                         <tr> 
-                            <td style="width: 1px;">{{$commande->id}} </td>
-                            <!-- <td>{{$commande->commentaire}} </td>
-                            <td>{{$commande->adress }}/{{$commande->city}} </td> -->
-                            <td>
-                                <div class="container">
-                                    <img src="{{ asset('images/' . $produit->design->design_front) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
-                                    <div class="middle">
-                                    <a href="{{ 'download/' . $produit->design->design_front }}">
-                                            <div class="text"><i class='fa fa-download'></i>   </div></a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="container">
-                                    <img src="{{ asset('images/' . $produit->design->design_back) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
-                                    <div class="middle">
-                                    <a href="{{ 'download/' . $produit->design->design_front }}">
-                                            <div class="text"><i class='fa fa-download'></i>   </div></a>
-                                    </div>
-                                </div>
-                            </td>
-                           <td></td><td></td>
-                           <td>{{$produit->color}}</td><td>{{$produit->taille}}</td>
+                            <td>{{$produit->id_commande }} </td>
+
+
+                            <?php $designs_var=["design_front","design_back","design_3","design_4"]; ?>
+                            @for($i=0;$i<4;$i++)
+                                @if($produit->design->{$designs_var[$i]}!=null)
+                                    <td >
+                                        <div class="container">
+                                            <img src="{{ asset('images/' . $produit->design->{$designs_var[$i]}) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
+                                            <div class="middle">
+                                            <a href="{{ 'download/' . $produit->design->{$designs_var[$i]} }}">
+                                                 <div class="text"><i class='fa fa-download'></i>   </div></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                   @else
+                                   <td class="text-center">-----</td>
+                                @endif
+                                @endfor
+
+
+                            <td>{{$produit->color }}</td>
+                            <td>{{$produit->taille }}</td>
+
+                            <td>{{$produit->type_product->type_product }}</td>
+                            <td>{{$produit->commande->commentaire }}</td>
+                            <td>{{$produit->commande->user->fullName }}</td>
+                            
                            <td >
                                 <div class="form-check form-switch ml-3" >
-                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="confirmation"  onclick="event.preventDefault();document.getElementById('confirmation').submit();" 
-                                    {{$produit->print_design==1?'checked':''}} >
+                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"  onclick="event.preventDefault();document.getElementById('printer_{{$produit->id}}').submit();" 
+                                    {{$produit->print_design==1?'checked':''}} {{$produit->print_design_v_fnl==1?'disabled':''}} >
                                     
                                     <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-                                    <form id="confirmation" action="{{' '}}" method="POST" style="display: none;">
+                                    <form id="printer_{{$produit->id}}" action="{{'printed1/'. $produit->id }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
                             </td>
 
+                                </tr>
                             
-                            <!-- <td >
-                                <div class="wrapper">
-                                        <div class="icon facebook">
-                                            <div class="tooltip" >Date Commande</div>
-                                            <div class="">{{$commande->datecommande}}</div> 
-                                        </div>
-                                </div>
-                                <div class="wrapper">
-                                        <div class="icon facebook">
-                                            <div class="tooltip" >Date Validation</div>
-                                            <div class="">{{$commande->datevalidation}}</div> 
-                                        </div>
-                                </div>
-                                <div class="wrapper">
-                                        <div class="icon facebook">
-                                            <div class="tooltip">Date Livraison</div>
-                                            <div class="">{{$commande->datelivraison}}</div> 
-                                        </div>
-                                </div><div class="myDIV"><span> Date Livraison</span>   <span >01/01/2023</span></div> 
-                            </td>-->
-                            <!-- <td style="width: 70px;">
-                                @foreach ($commande->produits as $produit)
-                                    <div class=" d-flex justify-content-between myDIV"> 
-                                        <div class=" mt-1">{{$produit->design->design_name}} / {{$produit->color}} / {{$produit->taille}} / {{$produit->type_product->type_product}} </div>
-                                        @if(auth()->user()->state=='dropshiper')
-                                            <div class="hide ml-2">
-                                                <a href="#editP{{$produit->id}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> </a>
-                                                <a href="#deleteP{{$produit->id}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i></a>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            </div>
+    </div>
+</div>
+ </div> 
+</div> 
+@endsection
+
+
+{{-- printer 2 --}}
+
+@elseif(auth()->user()->state=='printer2') 
+@section('breadcrumb')
+        <div class="col-sm-6">
+            <h4 class="page-title text-left">Orders Printer 2</h4>
+           
+        </div>
+    @endsection
+
+    @section('content')
+    @include('includes.flash')
+    <!--Show Validation Errors here-->
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <!--End showing Validation Errors here-->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <!-- <th  data-priority="1" style="width: 20px;">Id</th> -->
+                                <th  data-priority="1" >Order</th>
+                                <th  data-priority="2" >Design 1</th>
+                                <th  data-priority="3" >Design 2</th>
+                                <th  data-priority="4" >Design 3 </th>
+                                <th  data-priority="5"  >Design 4</th>
+                                <th  data-priority="6" >Color</th>
+                                <th  data-priority="7" >Size</th>
+                                <th  data-priority="8" >Type</th>
+                                <th  data-priority="12" >Comment</th>
+                                <th  data-priority="11" >Dropshiper</th>
+                                <th  data-priority="9" >Design printed 1</th>
+                                <th  data-priority="10" >Design printed 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                        @foreach ($produits as $produit)
+                        
+                        <tr> 
+                            <td> {{$produit->id_commande }} </td>
+
+                            <?php $designs_var=["design_front","design_back","design_3","design_4"]; ?>
+                            @for($i=0;$i<4;$i++)
+                                @if($produit->design->{$designs_var[$i]}!=null)
+                                    <td >
+                                        <div class="container">
+                                            <img src="{{ asset('images/' . $produit->design->{$designs_var[$i]}) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
+                                            <div class="middle">
+                                            <a href="{{ 'download/' . $produit->design->{$designs_var[$i]} }}">
+                                                 <div class="text"><i class='fa fa-download'></i>   </div></a>
                                             </div>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            </td> -->
-                            <!-- <td > -->
-                                <!-- <div class="form-check form-switch ml-3" >
-                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="confirmation"  onclick="event.preventDefault();document.getElementById('confirmation').submit();" 
-                                    {{$commande->confirmation==1?'checked':''}} >
+                                        </div>
+                                    </td>
+                                   @else
+                                   <td class="text-center">-----</td>
+                                @endif
+                                @endfor
+
+
+                            <td>{{$produit->color }}</td>
+                            <td>{{$produit->taille }}</td>
+
+                            <td>{{$produit->type_product->type_product }}</td>
+                            <td>{{$produit->commande->commentaire }}</td>
+                            <td>{{$produit->commande->user->fullName }}</td>
+                            
+                           <td >
+                                <div class="form-check form-switch ml-3" >
+                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"  
+                                    {{$produit->print_design==1?'checked disabled':'disabled'}} >
+                                </div>
+                            </td>
+                            <td >
+                                <div class="form-check form-switch ml-3" >
+                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"  onclick="event.preventDefault();document.getElementById('printer2_{{$produit->id}}').submit();" 
+                                    {{$produit->print_design_v_fnl==1?'checked':''}} {{$produit->print_design==1?'':'disabled'}} >
                                     
                                     <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-                                    <form id="confirmation" action="{{ 'confirmation_order/'. $commande->id}}" method="POST" style="display: none;">
+                                    <form id="printer2_{{$produit->id}}" action="{{'printed2/'. $produit->id }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                </div> -->
-                            <!-- </td> -->
-                            
-                            
+                                </div>
+                            </td>
+
                                 </tr>
-                                @endforeach
+                            
                         @endforeach
                     </tbody>
                 </table>

@@ -11,7 +11,7 @@ class Produit extends Model
     protected $guarded =[];
 
     public function commande() { 
-        return $this->belongsTo(Commande::class); 
+        return $this->belongsTo(Commande::class, 'id_commande', 'id'); 
     }
 
     public function type_product() {
