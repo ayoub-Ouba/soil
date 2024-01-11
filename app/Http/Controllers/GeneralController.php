@@ -10,9 +10,9 @@ class GeneralController extends Controller
 {
     public function download($id)
     {
-       
-       return response()->download(public_path('images/'.$id));
+        return response()->download(public_path('images/'.$id));
     }
+    
     public function Users(){
         User::count();
     }

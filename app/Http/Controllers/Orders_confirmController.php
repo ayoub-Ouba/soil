@@ -10,15 +10,15 @@ use App\Models\Produit;
 class Orders_confirmController extends Controller
 {
     public function index(){
-        $commandes=Commande::whereDate('datecommande',date('y-m-d'))->get();
+        $commandes=Commande::all();
         $designs=Design::all();
-        $produits=Produit::all();
-        return view("admin.index")->with(["commandes"=>$commandes,"designs"=>$designs, "produits"=>$produits]);
+        return view("admin.index")->with(["commandes"=>$commandes,"designs"=>$designs]);
     }
     public function confirmation_order($id){
         $commande=Commande::find($id);
         if($commande->confirmation==0){
             $commande->confirmation=1;
+            $commande->status='confirmed';
         }
         $commande->save();
         return redirect()->route('xx')->with("succes");

@@ -33,7 +33,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive "
                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
@@ -61,7 +61,8 @@
                                     <td>{{$commande->fullName}} </td><td> {{$commande->number}} </td><td>{{$commande->adress}}</td>
                                     <td>{{$commande->Total}} </td>
                                     @if($commande->commentaire!=null)
-                                        <td > {{$commande->commentaire}} </td>
+                                        <td > <div style="width: 200px;">
+                                                {{$commande->commentaire }}</div></td>
                                     @else
                                         <td>no comment </td>
                                     @endif

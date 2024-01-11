@@ -254,7 +254,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap "
                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
@@ -262,7 +262,7 @@
                                 <th  data-priority="1" >ID</th>
                                 <th  data-priority="6" >Dropshiper</th>
                                 <th  data-priority="6" >Dropshiper Comment</th>
-                                <th  data-priority="2" >Client Name </th>
+                                <th  data-priority="2" >Client  </th>
                                 <th  data-priority="3"  style="width: 50px;" >Number</th>
                                 <th  data-priority="4" >City</th>
                                 <th  data-priority="4" >Adress</th>
@@ -278,17 +278,22 @@
                                 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="">
+                           
                         @foreach ($commandes as $commande)
+                        @if($commande->status=="printed2" || $commande->status=="confirmed" )
                         <tr> 
                             <td>{{$commande->id}} </td>
                             <td > {{$commande->user->fullName}} </td>
-                            @if($commande->commentaire!=null)
-                                    <td > {{$commande->commentaire}} </td>  
+                            <td class="{{ strlen($commande->commentaire) > 28 ? 'comment-cell' : '' }}">
+                                @if($commande->commentaire != null)
+                                    <div class="{{ strlen($commande->commentaire) > 28 ? 'comment_pr_1' : '' }}">
+                                        {{$commande->commentaire}} 
+                                    </div>
                                 @else
-                                    <td>no comment </td>
-                            @endif
-                           
+                                    <div>no comment</div>
+                                @endif
+                            </td>
                             <td>{{$commande->fullName}} </td><td> {{$commande->number}} </td><td>{{$commande->city}}</td>
                             <td>{{$commande->adress}}</td>
                             
@@ -358,9 +363,14 @@
                             
                                 </td>
                             @else
-                                <td>{{$commande->commentaire_confirmateur}}</td>
+                                <td class="{{ strlen($commande->commentaire_confirmateur) > 28 ? 'comment-cell' : '' }}">
+                                    <div class="{{ strlen($commande->commentaire_confirmateur) > 28 ? 'comment_pr_1' : '' }}">
+                                        {{$commande->commentaire_confirmateur}}
+                                    </div>
+                            </td>
                             @endif
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -404,7 +414,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap "
                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
@@ -417,7 +427,7 @@
                                 <th  data-priority="6" >Color</th>
                                 <th  data-priority="7" >Size</th>
                                 <th  data-priority="8" >Type</th>
-                                <th  data-priority="9" >Comment</th>
+                                <th  data-priority="9"class="comment" style="width: 50px;">Comment</th>
                                 <th  data-priority="10" >Dropshiper</th>
                                 <th  data-priority="11" >Design printed</th>
                                
@@ -425,8 +435,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
-                        @foreach ($produits as $produit)
+                        @foreach($commandes as $commande)
+                        @foreach ($commande->produits as $produit)
                         
                         <tr> 
                             <td>{{$produit->id_commande }} </td>
@@ -445,7 +455,7 @@
                                         </div>
                                     </td>
                                    @else
-                                   <td class="text-center">-----</td>
+                                   <td class="text-center" >-----</td>
                                 @endif
                                 @endfor
 
@@ -454,7 +464,15 @@
                             <td>{{$produit->taille }}</td>
 
                             <td>{{$produit->type_product->type_product }}</td>
-                            <td>{{$produit->commande->commentaire }}</td>
+                            <td class="{{ strlen($commande->commentaire) > 28 ? 'comment-cell' : '' }}">
+                                @if($commande->commentaire != null)
+                                    <div class="{{ strlen($commande->commentaire) > 28 ? 'comment_pr_1' : '' }}">
+                                        {{$commande->commentaire}} 
+                                    </div>
+                                @else
+                                    <div>no comment</div>
+                                @endif
+                            </td>
                             <td>{{$produit->commande->user->fullName }}</td>
                             
                            <td >
@@ -471,6 +489,7 @@
 
                                 </tr>
                             
+                        @endforeach
                         @endforeach
                     </tbody>
                 </table>
@@ -512,10 +531,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap "
                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                        <thead>
-                            <tr>
+                        <thead class="">
+                            <tr class="">
                                 <!-- <th  data-priority="1" style="width: 20px;">Id</th> -->
                                 <th  data-priority="1" >Order</th>
                                 <th  data-priority="2" >Design 1</th>
@@ -527,13 +546,16 @@
                                 <th  data-priority="8" >Type</th>
                                 <th  data-priority="12" >Comment</th>
                                 <th  data-priority="11" >Dropshiper</th>
-                                <th  data-priority="9" >Design printed 1</th>
-                                <th  data-priority="10" >Design printed 2</th>
+                                <th  data-priority="9"  >Design printed 1</th>
+                                <th  data-priority="10" style="width:100px;">Design printed 2</th>
                             </tr>
                         </thead>
                         <tbody>
                         
-                        @foreach ($produits as $produit)
+                        @foreach($commandes as $commande)
+                        @if($commande->status=="prepared" || $commande->status=="printed1")
+                        @foreach ($commande->produits as $produit)
+                        
                         
                         <tr> 
                             <td> {{$produit->id_commande }} </td>
@@ -560,11 +582,20 @@
                             <td>{{$produit->taille }}</td>
 
                             <td>{{$produit->type_product->type_product }}</td>
-                            <td>{{$produit->commande->commentaire }}</td>
+                           
+                            <td class="{{ strlen($commande->commentaire) > 28 ? 'comment-cell2' : '' }}">
+                                @if($commande->commentaire != null)
+                                    <div class="{{ strlen($commande->commentaire) > 28 ? 'comment_pr_2' : '' }}">
+                                        {{$commande->commentaire}} 
+                                    </div>
+                                @else
+                                    <div>no comment</div>
+                                @endif
+                            </td>
                             <td>{{$produit->commande->user->fullName }}</td>
                             
                            <td >
-                                <div class="form-check form-switch ml-3" >
+                                <div class="form-check form-switch ml-3" style="width: 100px;" >
                                     <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"  
                                     {{$produit->print_design==1?'checked disabled':'disabled'}} >
                                 </div>
@@ -582,7 +613,8 @@
                             </td>
 
                                 </tr>
-                            
+                                @endforeach
+                                @endif
                         @endforeach
                     </tbody>
                 </table>

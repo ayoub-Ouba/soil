@@ -72,6 +72,21 @@ html {
   margin-top: 1rem;
   width: 150px;
 }
+.comment-cell {
+  width: 200px; /* Set the width for the comment cell */
+}
+.comment-cell2 {
+  width: 150px; /* Set the width for the comment cell */
+}
+
+.comment_pr_1 {
+  width: 200px;
+  white-space: pre-wrap; /* Allow whitespace to wrap and preserve line breaks */
+}
+.comment_pr_2 {
+  width: 150px;
+  white-space: pre-wrap; /* Allow whitespace to wrap and preserve line breaks */
+}
 .container {
   position: relative;
   width: 75%;

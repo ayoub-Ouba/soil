@@ -52,7 +52,7 @@
                             <option value="Snapchat" {{($SM[0]=="Snapchat")?'selected':''}}>Snapchat</option>
                             <option value="TikTok" {{($SM[0]=="TikTok")?'selected':''}}>TIKtok</option>
                         </select>
-                        <input type="text" class="form-control" id="socialmediaV" name="socialmediaV" value="{{$SM[1]}}" required />
+                        <input type="text" class="form-control" id="socialmediaV" name="socialmediaV" value="{{$SM[0]}}" required />
                     </div>
 
                     <div class="form-group">
