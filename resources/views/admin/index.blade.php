@@ -436,6 +436,8 @@
                         </thead>
                         <tbody>
                         @foreach($commandes as $commande)
+                        @if($commande->status=="prepared")
+                         @if($commande->id_printed1==null || $commande->id_printed1==auth()->user()->id)
                         @foreach ($commande->produits as $produit)
                         
                         <tr> 
@@ -447,7 +449,12 @@
                                 @if($produit->design->{$designs_var[$i]}!=null)
                                     <td >
                                         <div class="container">
-                                            <img src="{{ asset('images/' . $produit->design->{$designs_var[$i]}) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
+                                            <?php $extension = pathinfo($produit->design->{$designs_var[$i]}, PATHINFO_EXTENSION); ?>
+                                            @if($extension!="pdf")
+                                                <img src="{{ asset('images/' . $produit->design->{$designs_var[$i]}) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
+                                            @else
+                                                <iframe src="{{ asset('images/' . $produit->design->{$designs_var[$i]}) }}"  alt="Avatar" class="image" style="width:80%;height:160px"></iframe>
+                                            @endif
                                             <div class="middle">
                                             <a href="{{ 'download/' . $produit->design->{$designs_var[$i]} }}">
                                                  <div class="text"><i class='fa fa-download'></i>   </div></a>
@@ -488,8 +495,11 @@
                             </td>
 
                                 </tr>
+                               
                             
                         @endforeach
+                        @endif
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -553,9 +563,9 @@
                         <tbody>
                         
                         @foreach($commandes as $commande)
-                        @if($commande->status=="prepared" || $commande->status=="printed1")
+                        @if($commande->status=="printed1")
                         @foreach ($commande->produits as $produit)
-                        
+                       
                         
                         <tr> 
                             <td> {{$produit->id_commande }} </td>
@@ -565,7 +575,13 @@
                                 @if($produit->design->{$designs_var[$i]}!=null)
                                     <td >
                                         <div class="container">
-                                            <img src="{{ asset('images/' . $produit->design->{$designs_var[$i]}) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
+                                         
+                                            <?php $extension = pathinfo($produit->design->{$designs_var[$i]}, PATHINFO_EXTENSION); ?>
+                                            @if($extension!="pdf")
+                                                <img src="{{ asset('images/' . $produit->design->{$designs_var[$i]}) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
+                                            @else
+                                                <iframe src="{{ asset('images/' . $produit->design->{$designs_var[$i]}) }}"  alt="Avatar" class="image" style="width:80%;height:160px"></iframe>
+                                            @endif
                                             <div class="middle">
                                             <a href="{{ 'download/' . $produit->design->{$designs_var[$i]} }}">
                                                  <div class="text"><i class='fa fa-download'></i>   </div></a>

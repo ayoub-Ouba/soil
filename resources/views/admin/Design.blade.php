@@ -17,13 +17,16 @@
 @endsection
 @section('content')
 @include('includes.flash')
-<!--Show Validation Errors here-->
-
-@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+    <!--Show Validation Errors here-->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 <!--End showing Validation Errors here-->
     <div class="row">
         <div class="col-12">
@@ -63,7 +66,15 @@
                                             <button class="btn"> <i class='fa fa-download '></i></button>
                                         </div> -->
                                         <div class="container">
+
+                                        <?php $extension = pathinfo($design->{$designs_var[$i]}, PATHINFO_EXTENSION); ?>
+                                            @if($extension!="pdf")
+                                            
                                             <img src="{{ asset('images/' . $design->{$designs_var[$i]}) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
+                                            @else
+                                            <iframe src="{{ asset('images/' . $design->{$designs_var[$i]}) }}"  alt="Avatar" class="image" style="width:80%;height:160px"></iframe>
+                                            
+                                            @endif
                                             <div class="middle">
                                             <a href="{{ 'download/' . $design->{$designs_var[$i]} }}">
                                                  <div class="text"><i class='fa fa-download'></i>   </div></a>
@@ -76,9 +87,8 @@
                                 @endfor
                                 <td style="width: 100px;" class="text-center">{{$design->version_design}}</td>
                                 <td style="width: 100px;">
-                                    
+                                @if ($design->produits()->count() < 1)
                                     <a href="#edit{{$design->id}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
-                                    @if ($design->produits()->count() < 1)
                                     <a href="#delete{{$design->id}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
                                     @endif
                                 </td>

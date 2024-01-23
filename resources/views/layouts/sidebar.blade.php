@@ -50,7 +50,7 @@
                                 </a>
                             </li>
 
-                            <li class="">
+                            <li class="Types_products">
                                 <a href="/Types_products" class="waves-effect {{ request()->is("Design") || request()->is("Design/*") ? "mm active" : "" }}">
                                 <i class="ti-user"></i> <span>Types of products </span>
                                 </a>
@@ -61,11 +61,23 @@
                                 </a>
                             </li>
                             @endif
+                            @if(auth()->user()->state=='printer1'|| auth()->user()->state=='printer2')
+                                <li class="orders">
+                                        <a href="/home" class="waves-effect {{ request()->is("orders") || request()->is("orders/*") ? "mm active" : "" }}">
+                                        <i class="ti-calendar"></i> <span>Orders </span>
+                                        </a>
+                                    </li>
+                                <li class="">
+                                    <a href="/History" class="waves-effect {{ request()->is("Design") || request()->is("Design/*") ? "mm active" : "" }}">
+                                    <i class="ti-server"></i> <span>History </span>
+                                    </a>
+                                </li>
+                            @endif
                            
                             <li class="">
                                 <a href="{{ route('logout') }}"  onclick="event.preventDefault();document.getElementById('logout-form').submit();" 
                                     class="waves-effect {{ request()->is("leave") || request()->is("leave/*") ? "mm active" : "" }}" >
-                                    <i class="dripicons-backspace"></i> <span> Leave </span>
+                                    <i class="dripicons-backspace"></i> <span> Logout </span>
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf

@@ -41,13 +41,14 @@ class DesignController extends Controller
     public function store(Request $request)
     {
         $request->validate(['design_name'=>'required|unique:designs,design_name','version_design'=>'required|in:black,white',
-        'design_front' => 'required|image|mimes:png,jpg,jpeg|max:80000','design_back' => 'image|mimes:png,jpg,jpeg|max:80000',
-        'design_3' => 'image|mimes:png,jpg,jpeg|max:80000','design_4' => 'image|mimes:png,jpg,jpeg|max:80000',]);
-        // $design_count=Design::count();
+        'design_front' => 'mimes:png,pdf|max:80000','design_back' => 'mimes:png,pdf|max:80000',
+        'design_3' => 'mimes:png,pdf|max:80000','design_4' => 'mimes:png,pdf|max:80000',]);
+
         $design=new Design();
         $design->id_user=Auth::user()->id;
         $design->design_name=$request->design_name;
         $designsNams=["design_front","design_back","design_3","design_4"];
+        
         for($i=0;$i<count($designsNams);$i++){
                 $design_nom=null;
             if(isset($request->{$designsNams[$i]})){
@@ -95,8 +96,8 @@ class DesignController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate(['version_design'=>'in:black,white',
-        'design_front' => 'image|mimes:png,jpg,jpeg|max:80000','design_back' => 'image|mimes:png,jpg,jpeg|max:80000',
-        'design_3' => 'image|mimes:png,jpg,jpeg|max:80000','design_4' => 'image|mimes:png,jpg,jpeg|max:80000',]);
+        'design_front' => 'mimes:png,pdf|max:80000','design_back' => 'mimes:png,pdf|max:80000',
+        'design_3' => 'mimes:png,pdf|max:80000','design_4' => 'mimes:png,pdf|max:80000',]);
        
         $design=Design::find($id);
        $design_name=Design::where('design_name',$request->design_name)->where('id','!=',$id)->get();

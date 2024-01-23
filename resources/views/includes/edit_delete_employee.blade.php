@@ -1,4 +1,4 @@
-<?php $state = array("admin", "confirmateur","manager","printer");?>
+<?php $state = array("admin", "confirmateur","manager","printer1" ,"printer2");?>
 <!-- Edit -->
 <div class="modal fade" id="edit{{ $user->id }}">
     <div class="modal-dialog">

@@ -19,33 +19,31 @@
                             <input type="text" class="form-control" placeholder="Enter Design Name" id="design_name" name="design_name"
                                 required />
                         </div>
-                        
-                        
                         <div class="form-group">
                             <label for="design_front" class="control-label">Design Front</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="design_front"  name="design_front">
-                                <label class="custom-file-label" for="customFileLang">Select Your Design</label>
+                                <input type="file" class="custom-file-input" id="design_front" accept="application/pdf,image/png"  name="design_front">
+                                <label class="custom-file-label" for="customFileLang" >Select Your Design</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="design_back" class="control-label">Design Back</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="design_back" lang="es" name="design_back">
+                                <input type="file" class="custom-file-input" id="design_back" accept="application/pdf,image/png" lang="es" name="design_back">
                                 <label class="custom-file-label" for="customFileLang">Select Your Design</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="design_3" class="control-label">Design 3</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="design_3" lang="es" name="design_3">
+                                <input type="file" class="custom-file-input" id="design_3" accept="application/pdf,image/png" lang="es" name="design_3">
                                 <label class="custom-file-label" for="customFileLang">Select Your Design</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="design_4" class="control-label">Design 4</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="design_4" lang="es" name="design_4">
+                                <input type="file" class="custom-file-input" id="design_4" accept="application/pdf,image/png" lang="es" name="design_4">
                                 <label class="custom-file-label" for="customFileLang">Select Your Design</label>
                             </div>
                         </div>

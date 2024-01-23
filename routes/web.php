@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/download/{id}',[GeneralController::class,'download']);
     Route::post("/printed1/{idP}",'\App\Http\Controllers\PrinterController@IsPrinted1')->name("printer1");
     Route::post("/printed2/{idP}",'\App\Http\Controllers\PrinterController@IsPrinted2')->name("printer2");
+    Route::get("/History",'\App\Http\Controllers\PrinterController@history');
 });
 
 Route::middleware(['auth','role:dropshiper'])->group(function () {

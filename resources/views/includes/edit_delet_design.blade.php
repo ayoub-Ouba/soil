@@ -20,12 +20,17 @@
                     <div class="form-group">
                             <label for="design_front" class="control-label">Design Front</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="design_front"  name="design_front" value="{{ $design->design_front }}">
+                                <input type="file" class="custom-file-input" id="design_front"  name="design_front" accept="application/pdf,image/png" value="{{ $design->design_front }}">
                                 <label class="custom-file-label" for="customFileLang">Select Your Design</label>
                             </div>
                             @if($design->design_front!=null)
                             <div class="text-left">
-                                <img src="{{ asset('images/' . $design->design_front)}}" alt="__" class="image" style="width:30%;height:100px" >
+                                <?php $extension = pathinfo($design->design_front, PATHINFO_EXTENSION); ?>
+                                @if($extension!="pdf")
+                                    <img src="{{ asset('images/' . $design->design_front)}}" alt="__" class="image" style="width:30%;height:100px" >
+                                @else
+                                    <iframe src="{{ asset('images/' . $design->design_front) }}"  alt="Avatar" class="image mt-1"  style="width:30%;height:100px"></iframe>
+                                 @endif
                             </div>
                             @else 
                             <div class="d-none"></div>
@@ -34,12 +39,18 @@
                         <div class="form-group">
                             <label for="design_back" class="control-label">Design Back</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="design_back" lang="es" name="design_back" value="{{ $design->design_back }}">
+                                <input type="file" class="custom-file-input" id="design_back" lang="es" name="design_back" accept="application/pdf,image/png" value="{{ $design->design_back }}">
                                 <label class="custom-file-label" for="customFileLang">Select Your Design</label>
                             </div>
                             @if($design->design_back!=null)
+                            
                             <div class="text-left">
-                                <img src="{{ asset('images/' . $design->design_back)}}" alt="__" class="image" style="width:30%;height:100px" >
+                                <?php $extension = pathinfo($design->design_back, PATHINFO_EXTENSION); ?>
+                                @if($extension!="pdf")
+                                    <img src="{{ asset('images/' . $design->design_back)}}" alt="__" class="image" style="width:30%;height:100px">
+                                @else
+                                    <iframe src="{{ asset('images/' . $design->design_back) }}"  alt="Avatar" class="image mt-1"  style="width:30%;height:100px"></iframe>
+                                 @endif
                             </div>
                             @else 
                             <div class="d-none"></div>
@@ -48,13 +59,20 @@
                         <div class="form-group">
                             <label for="design_3" class="control-label">Design 3</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="design_3" lang="es" name="design_3" value="{{ $design->design_3 }}">
+                                <input type="file" class="custom-file-input" id="design_3" lang="es" name="design_3" accept="application/pdf,image/png" value="{{ $design->design_3 }}">
                                 <label class="custom-file-label" for="customFileLang">Select Your Design</label>
                             </div>
                             @if($design->design_3!=null)
                             <div class="text-left">
-                                <img src="{{ asset('images/' . $design->design_3)}}" alt="__" class="image" style="width:30%;height:100px" >
+                            <?php $extension = pathinfo($design->design_3, PATHINFO_EXTENSION); ?>
+                                @if($extension!="pdf")
+                                    <img src="{{ asset('images/' . $design->design_3)}}" alt="__" class="image" style="width:30%;height:100px">
+                                @else
+                                    <iframe src="{{ asset('images/' . $design->design_3) }}"  alt="Avatar" class="image mt-1"  style="width:30%;height:100px"></iframe>
+                                 @endif
+                                
                             </div>
+
                             @else 
                             <div class="d-none"></div>
                             @endif
@@ -62,12 +80,17 @@
                         <div class="form-group">
                             <label for="design_4" class="control-label">Design 4</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="design_4" lang="es" name="design_4" value="{{ $design->design_4 }}">
+                                <input type="file" class="custom-file-input" id="design_4" lang="es" name="design_4" accept="application/pdf,image/png" value="{{ $design->design_4 }}">
                                 <label class="custom-file-label" for="customFileLang">Select Your Design</label>
                             </div>
                             @if($design->design_4!=null)
                             <div class="text-left">
-                                <img src="{{ asset('images/' . $design->design_4)}}" alt="__" class="image" style="width:30%;height:100px" >
+                            <?php $extension = pathinfo($design->design_4, PATHINFO_EXTENSION); ?>
+                                @if($extension!="pdf")
+                                    <img src="{{ asset('images/' . $design->design_4)}}" alt="__" class="image" style="width:30%;height:100px">
+                                @else
+                                    <iframe src="{{ asset('images/' . $design->design_4) }}"  alt="Avatar" class="image mt-1"  style="width:30%;height:100px"></iframe>
+                                 @endif
                             </div>
                             @else 
                             <div class="d-none"></div>

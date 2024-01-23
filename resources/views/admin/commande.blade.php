@@ -33,7 +33,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive "
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
@@ -60,12 +60,16 @@
                                     <td>{{$commande->id}} </td>
                                     <td>{{$commande->fullName}} </td><td> {{$commande->number}} </td><td>{{$commande->adress}}</td>
                                     <td>{{$commande->Total}} </td>
-                                    @if($commande->commentaire!=null)
-                                        <td > <div style="width: 200px;">
-                                                {{$commande->commentaire }}</div></td>
-                                    @else
-                                        <td>no comment </td>
-                                    @endif
+                                   
+                                    <td class="{{ strlen($commande->commentaire) > 28 ? 'comment-cell2' : '' }}">
+                                @if($commande->commentaire != null)
+                                    <div class="{{ strlen($commande->commentaire) > 28 ? 'comment_pr_2' : '' }}">
+                                        {{$commande->commentaire}} 
+                                    </div>
+                                @else
+                                    <div>no comment</div>
+                                @endif
+                            </td>
 
                                     <td>{{$commande->quantite}}</td><td>{{$commande->socialmedia}}</td> <td>{{$commande->status}}</td>
                                     <td>

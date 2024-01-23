@@ -31,6 +31,8 @@ class Commande extends Migration
             $table->boolean("confirmation")->default(false);
             $table->string("commentaire_confirmateur")->nullable();
             $table->foreignId('id_user')->references('id')->on('users');
+            $table->integer("id_printed1")->nullable(); $table->integer("id_printed2")->nullable();
+          
             $table->timestamps();
         });
     }
