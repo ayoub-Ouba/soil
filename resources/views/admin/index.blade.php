@@ -230,7 +230,7 @@
     
     @section('breadcrumb')
         <div class="col-sm-6">
-            <h4 class="page-title text-left">Orders</h4>
+            <h4 class="page-title text-left">Orders Prepared</h4>
            
         </div>
     @endsection
@@ -273,6 +273,8 @@
                                
                                 <th  data-priority="9" style="width: 20px;">Date</th>
                                 <th data-priority="9" >products </th>
+                                <th data-priority="7" >audio upload</th>
+                                <th data-priority="7" >audio record</th>
                                 <th data-priority="7" >confirmation</th>
                                 <th data-priority="7" >Your Comment</th>
                                 
@@ -281,7 +283,7 @@
                         <tbody class="">
                            
                         @foreach ($commandes as $commande)
-                        @if($commande->status=="printed2" || $commande->status=="confirmed" )
+                        {{-- @if($commande->status=="printed2" || $commande->status=="confirmed" ) --}}
                         <tr> 
                             <td>{{$commande->id}} </td>
                             <td > {{$commande->user->fullName}} </td>
@@ -333,11 +335,48 @@
                                     </div>
                                 @endforeach
                             </td>
+                            {{-- audio upload --}}
+                            
+                            <td >
+                                @if ($commande->audio1 == null)
+                                <form action="/uploadaudio1/{{$commande->id}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="file" name="audio_upload_1" accept="audio/*" required>
+                                    <button type="submit">Save</button>
+                                </form>
+                            @else
+                                <audio controls>
+                                    <source src="{{ asset('images/' . $commande->audio1) }}" type="audio/mp3">
+                                    Your browser does not support the audio tag.
+                                </audio>
+
+                            @endif
+                                
+                            </td>
+                            
+                            <td >
+                                {{-- audio record --}}
+                            {{-- <div>
+                                <button type="button" id="startRecord_{{$commande->id}}" onclick="startRecording({{$commande->id}})">Start Recording</button>
+                                <button type="button" id="stopRecord_{{$commande->id}}" onclick="stopRecording({{$commande->id}})" disabled>Stop Recording</button>
+                                <audio id="audioPlayer_{{$commande->id}}" controls></audio>
+                                <button type="button" type="button" id="saveButton_{{$commande->id}}" onclick="saveRecording({{$commande->id}});">Save</button>
+                            </div> --}}
+                            </td>
                             <td >
                                 <div class="form-check form-switch ml-3" >
                                     <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="confirmation"  
-                                        onclick="event.preventDefault();document.getElementById('confirmation').submit();" 
+                                        onclick="confirmed(event)" 
                                     {{$commande->confirmation==1?'checked':''}} >
+                                    <script>
+                                        function confirmed(event){
+                                            event.preventDefault();
+                                            var confirmation=confirm('Are you sure you want to confirm this order?');
+                                            if(confirmation){
+                                                document.getElementById('confirmation').submit();
+                                            }
+                                        }
+                                    </script>
                                     
                                     <label class="form-check-label" for="flexSwitchCheckChecked"></label>
                                     <form id="confirmation" action="{{ 'confirmation_order/'. $commande->id}}" method="POST" style="display: none;">
@@ -345,7 +384,7 @@
                                     </form>
                                 </div>
                             </td>
-                            @if($commande->commentaire_confirmateur==null)
+                            @if($commande->commentaire_confirmateur1==null)
                                 <td>
                                 <div class="form-group">
                                 <!-- <label for="comment">Comment</label> -->
@@ -363,23 +402,57 @@
                             
                                 </td>
                             @else
-                                <td class="{{ strlen($commande->commentaire_confirmateur) > 28 ? 'comment-cell' : '' }}">
-                                    <div class="{{ strlen($commande->commentaire_confirmateur) > 28 ? 'comment_pr_1' : '' }}">
-                                        {{$commande->commentaire_confirmateur}}
+                                <td class="{{ strlen($commande->commentaire_confirmateur1) > 28 ? 'comment-cell' : '' }}">
+                                    <div class="{{ strlen($commande->commentaire_confirmateur1) > 28 ? 'comment_pr_1' : '' }}">
+                                        {{$commande->commentaire_confirmateur1}}
                                     </div>
                             </td>
-                            @endif
+                            {{-- @endif --}}
                         </tr>
                         @endif
+                        
                         @endforeach
+                        
                     </tbody>
                 </table>
+                {{-- <audio controls>
+                    <source src="{{ asset('images/' . $commandes[0]->audio1) }}" type="audio/mp3">
+                    Your browser does not support the audio tag.
+                </audio>
+                {{$commandes[0]->audio1}} --}}
+                {{-- <audio controls>
+                    <source src="{{ asset('images/' . $commandes[0]->audio1) }}" type="audio/mp3">
+                    Your browser does not support the audio tag.
+                </audio>
+                <p>Dynamic File Path: {{ asset('images/' . $commandes[0]->audio1) }}</p> --}}
+
+                
+                
             </div>
             </div>
     </div>
 </div>
  </div> 
-</div> 
+</div>
+{{-- <script>
+    function startRecording(id){
+        console.log('startRecord_' + id);
+
+        var startButton = document.getElementById('startRecord_' + id);
+        var stopButton = document.getElementById('stopRecord_' + id);
+        // console.log('Button element:', startButton);
+
+        // // Disable the button
+        startButton.disabled = true;
+        console.log('Button disabled');
+
+        console.log('Button element:', startButton);
+    }
+</script> --}}
+
+{{-- <script src="{{ asset('js/recorder.js') }}"></script> --}}
+{{-- <script src="{{ asset('js/record1.js') }}"></script> --}}
+
 @endsection
 
 @section('script')
@@ -640,7 +713,18 @@
 </div>
  </div> 
 </div> 
+
+{{-- @foreach ($commandes as $commande)
+    @include('includes.add_audio')
+@endforeach --}}
+
+
+
+
 @endsection
+
+
+
 
 @section('script')
 <!-- Responsive-table-->
@@ -654,7 +738,10 @@
 <script src="{{ URL::asset('plugins/chartist/js/chartist-plugin-tooltip.min.js') }}"></script>
 
 
+
+
 <!-- peity JS -->
 <script src="{{ URL::asset('plugins/peity-chart/jquery.peity.min.js') }}"></script>
 <script src="{{ URL::asset('assets/pages/dashboard.js') }}"></script>
 @endsection
+

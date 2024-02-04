@@ -21,6 +21,7 @@
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
+        "recorder-js": "^1.0.7",
         "vue": "^2.6.14"
     }
 }

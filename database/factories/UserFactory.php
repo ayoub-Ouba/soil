@@ -24,11 +24,11 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-                'fullName' => 'ayman',
-                'email' => 'ayman@email.com',
-                'password' => Hash::make('admin123'),
-                'remember_token' => Str::random(10),
-                'state'=>'admin','Number'=>'0682056234','image'=>'mlk_0.png'
+                // 'fullName' => 'ayman',
+                // 'email' => 'ayman@email.com',
+                // 'password' => Hash::make('admin123'),
+                // 'remember_token' => Str::random(10),
+                // 'state'=>'admin','Number'=>'0682056234','image'=>'mlk_0.png'
             ];
     }
 

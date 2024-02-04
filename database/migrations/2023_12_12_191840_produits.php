@@ -16,7 +16,7 @@ class Produits extends Migration
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
             $table->String("color");
-            $table->String("taille");
+            $table->enum("taille", ['S', 'M', 'L', 'XL', 'XXL']);
             $table->foreignId('id_commande')->references('id')->on('commandes');
             $table->foreignId('id_type')->references('id')->on('type_products');
             $table->foreignId('id_design')->references('id')->on('designs');
