@@ -11,9 +11,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
             </div>
-            <h4 class="modal-title"><b><span class="employee_id">Edit Commande</span></b></h4>
+            <h4 class="modal-title"><b><span class="employee_id">Edit Order</span></b></h4>
             <div class="modal-body text-left">
-                <form class="form-horizontal" method="POST" action="{{ route('commande.update', $commande->id) }}" enctype="multipart/form-data">
+                <form class="form-horizontal" method="POST" action="{{ route('orders.update', $commande->id) }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
@@ -52,7 +52,7 @@
                             <option value="Snapchat" {{($SM[0]=="Snapchat")?'selected':''}}>Snapchat</option>
                             <option value="TikTok" {{($SM[0]=="TikTok")?'selected':''}}>TIKtok</option>
                         </select>
-                        <input type="text" class="form-control" id="socialmediaV" name="socialmediaV" value="{{$SM[0]}}" required />
+                        <input type="text" class="form-control" id="socialmediaV" name="socialmediaV" value="{{$SM[1]}}" required />
                     </div>
 
                     <div class="form-group">
@@ -77,11 +77,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header " style="align-items: center">
-              <h4 class="modal-title "><span class="employee_id">Delete Commande</span></h4>
+              <h4 class="modal-title "><span class="employee_id">Delete Order</span></h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('commande.destroy', $commande->id ) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('orders.destroy', $commande->id ) }}">
                     @csrf
                     {{ method_field('DELETE') }}
                     <div class="text-center">

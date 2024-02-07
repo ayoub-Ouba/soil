@@ -12,7 +12,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
             </div>
-            <h4 class="modal-title"><b><span class="employee_id">Edit Produit</span></b></h4>
+            <h4 class="modal-title"><b><span class="employee_id">Edit Product</span></b></h4>
             <div class="modal-body text-left">
                 <form class="form-horizontal" method="POST" action="{{ route('produit.update', $produit->id) }}" enctype="multipart/form-data">
                     @csrf
@@ -84,7 +84,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header " style="align-items: center">
-              <h4 class="modal-title "><span class="employee_id">Delete Produit</span></h4>
+              <h4 class="modal-title "><span class="employee_id">Delete Product</span></h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -93,7 +93,7 @@
                     {{ method_field('DELETE') }}
                     <div class="text-center">
                         <h6>Are you sure you want to delete:</h6>
-                        <h2 class="bold del_employee_name">{{$produit->design->design_name}}/{{$produit->color}}/{{$produit->taille}}/{{$produit->type_product->type_product}}</h2>
+                        <h2 class="bold del_employee_name">This Product</h2>
                     </div>
             </div>
             <div class="modal-footer">

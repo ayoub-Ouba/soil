@@ -14,8 +14,9 @@
         <div class="card"  style="border-radius: 1rem 1rem 1rem 1rem;">
           <div class="row g-0 shadow-lg " style="border-radius: 1rem 1rem 1rem 1rem;">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <video class="img-fluid" style="border-radius: 1rem 0 0 1rem;"  autoplay loop muted>
-              <source src="{{asset('images/ved1.mp4')}}" type="video/mp4" /></video>
+              <!-- <video class="img-fluid" style="border-radius: 1rem 0 0 1rem;"  autoplay loop muted>
+              <source src="{{asset('images/ved1.mp4')}}" type="video/mp4" /></video> -->
+              <img src="{{asset('images/login.jpg')}}"/>
             </div>
             <!-- <div class="ratio ratio-16x9">
   <iframe src="{{asset('images/ved1.mp4')}}" title="YouTube video" allowfullscreen></iframe>

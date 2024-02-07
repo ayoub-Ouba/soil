@@ -68,7 +68,7 @@
                                         </a>
                                     </li>
                                 <li class="">
-                                    <a href="/History" class="waves-effect {{ request()->is("Design") || request()->is("Design/*") ? "mm active" : "" }}">
+                                    <a href="{{auth()->user()->state=='printer1'?'/History_dtfprinter': '/History_Hoodiprinter'}}" class="waves-effect {{ request()->is("Design") || request()->is("Design/*") ? "mm active" : "" }}">
                                     <i class="ti-server"></i> <span>History </span>
                                     </a>
                                 </li>

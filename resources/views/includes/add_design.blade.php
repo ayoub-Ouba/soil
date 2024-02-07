@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label for="design_front" class="control-label">Design Front</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="design_front" accept="application/pdf,image/png"  name="design_front">
+                                <input type="file" class="custom-file-input" id="design_front" accept="application/pdf,image/png"  name="design_front" required>
                                 <label class="custom-file-label" for="customFileLang" >Select Your Design</label>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                    Submit
+                                    Add
                                 </button>
                                 <button type="reset" class="btn btn-secondary waves-effect m-l-5" data-dismiss="modal">
                                     Cancel

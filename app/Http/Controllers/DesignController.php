@@ -60,7 +60,7 @@ class DesignController extends Controller
         $design->version_design=$request->version_design;
        
         $design->save();
-        return redirect()->route('design.index')->with('success');
+        return redirect()->route('design.index')->with("message_falsh",'Design is add');
     }
 
     /**
@@ -124,7 +124,7 @@ class DesignController extends Controller
             
             $design->version_design=$request->version_design;
             $design->save();
-            return redirect()->route('design.index')->with("succes");
+            return redirect()->route('design.index')->with("message_falsh",'Design is updated');
         }
         }
 
@@ -148,6 +148,6 @@ class DesignController extends Controller
     }
        
         $design->delete();
-        return redirect()->route('design.index')->with('success');
+        return redirect()->route('design.index')->with("message_falsh",'Design is deleted');
     }
 }

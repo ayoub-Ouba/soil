@@ -10,7 +10,7 @@
                     <span aria-hidden="true">&times;</span></button>
             </div>
 
-            <h4 class="modal-title"><b>Add produit</b></h4>
+            <h4 class="modal-title"><b>Add Product</b></h4>
             <span id="commandeIdPlaceholder"></span>            
             <div class="modal-body">
 

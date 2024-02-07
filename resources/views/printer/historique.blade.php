@@ -44,18 +44,69 @@
                                 <th  data-priority="9"class="comment" style="width: 50px;">Comment</th>
                                 <th  data-priority="10" >Dropshiper</th>
                                
-                                <th  data-priority="11" >Order date</th>
+                                <th  data-priority="11" >Order Date</th>
+                                @if(auth()->user()->state=="printer1")
+                                <th  data-priority="11" >Dtf Printed Time</th>
+                                @else
+                                <th  data-priority="11" >Hoodie Printed time</th>
+                                @endif
                                
                                 
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach(count($commandes_printer1)>0?$commandes_printer1 :$commandes_printer2 as $commande)
+                        @foreach(auth()->user()->state=="printer1"?$commandes_printer1 :$commandes_printer2 as $commande)
                         @foreach ($commande->produits as $produit)
-                       @if($produit->print_design==1 || $produit->print_design_v_fnl==1)
+                    
                         
                         <tr> 
-                            <td>{{$produit->id_commande }} </td>
+                        @if($produit->print_design_v_fnl==1 && $commande->status!="printed1"   && auth()->user()->state=="printer2")
+                        <td>{{$produit->id_commande }} </td>
+
+
+                            <?php $designs_var=["design_front","design_back","design_3","design_4"]; ?>
+                            @for($i=0;$i<4;$i++)
+                                @if($produit->design->{$designs_var[$i]}!=null)
+                                    <td >
+                                        <div class="container">
+                                        <?php $extension = pathinfo($produit->design->{$designs_var[$i]}, PATHINFO_EXTENSION); ?>
+                                            @if($extension!="pdf")
+                                                <img src="{{ asset('images/' . $produit->design->{$designs_var[$i]}) }}" alt="Avatar" class="image" style="width:80%;height:160px" />
+                                            @else
+                                                <iframe src="{{ asset('images/' . $produit->design->{$designs_var[$i]}) }}"  alt="Avatar" class="image" style="width:80%;height:160px"></iframe>
+                                            @endif
+                                            <div class="middle">
+                                            <a href="{{ 'download/' . $produit->design->{$designs_var[$i]} }}">
+                                                 <div class="text"><i class='fa fa-download'></i>   </div></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                   @else
+                                   <td class="text-center" >-----</td>
+                                @endif
+                                @endfor
+
+
+                            <td>{{$produit->color   }} mmm</td>
+                            <td>{{$produit->taille }}</td>
+
+                            <td>{{$produit->type_product->type_product }}</td>
+                            <td class="{{ strlen($commande->commentaire) > 28 ? 'comment-cell' : '' }}">
+                                @if($commande->commentaire != null)
+                                    <div class="{{ strlen($commande->commentaire) > 28 ? 'comment_pr_1' : '' }}">
+                                        {{$commande->commentaire}} 
+                                    </div>
+                                @else
+                                    <div>no comment</div>
+                                @endif
+                            </td>
+                            <td>{{$produit->commande->user->fullName }}</td>
+                            
+                           
+                            <td> {{$commande->datecommande}} </td>
+                            <td> {{$produit->date_print_dtf}} </td>
+                        @elseif($produit->print_design==1 && $commande->status!="prepared" && auth()->user()->state=="printer1")
+                        <td>{{$produit->id_commande }} </td>
 
 
                             <?php $designs_var=["design_front","design_back","design_3","design_4"]; ?>
@@ -98,10 +149,11 @@
                             
                            
                             <td> {{$commande->datecommande}} </td>
-
+                            <td> {{$produit->date_print_dtf}} </td>
+                            @endif
                                 </tr>
                             
-                        @endif
+                       
                         @endforeach
                         @endforeach
                     </tbody>

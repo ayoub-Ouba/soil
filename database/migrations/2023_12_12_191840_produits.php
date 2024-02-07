@@ -22,6 +22,8 @@ class Produits extends Migration
             $table->foreignId('id_design')->references('id')->on('designs');
             $table->boolean('print_design')->default(false);
             $table->boolean('print_design_v_fnl')->default(false);
+            $table->dateTime('date_print_dtf')->nullable();
+            $table->dateTime('date_print_Hoodie')->nullable();
             $table->timestamps();
         });
     }

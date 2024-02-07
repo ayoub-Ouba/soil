@@ -7,12 +7,12 @@
                     <span aria-hidden="true">&times;</span></button>
             </div>
 
-            <h4 class="modal-title"><b>Add commande</b></h4>
+            <h4 class="modal-title"><b>Add Order</b></h4>
             <div class="modal-body">
 
                 <div class="card-body text-left">
 
-                    <form method="POST" action="{{ route('commande.store') }}">
+                    <form method="POST" action="{{ route('orders.store') }}">
                         @csrf
                         <div class="form-group">
                             <label for="full_name">Client Name</label>
@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                    Submit
+                                    Add
                                 </button>
                                 <button type="reset" class="btn btn-secondary waves-effect m-l-5" data-dismiss="modal">
                                     Cancel

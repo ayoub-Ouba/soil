@@ -47,6 +47,7 @@ class ProduitController extends Controller
         $request->validate([
             'color'=>'required','type'=>'required',
             'design'=>'required']);
+            
         $produit=new Produit();
         $commande=Commande::find($idCmd);
         $produit->color=$request->color;
@@ -58,8 +59,7 @@ class ProduitController extends Controller
     
         $commande->quantite=$commande->produits->count();
         $commande->save();
-        return redirect()->route('commande.index')->with('success');
-
+        return redirect()->route('orders.index')->with("message_falsh",'Product is add to order');
     }
 
     /**
@@ -99,7 +99,7 @@ class ProduitController extends Controller
         $produit->id_type=$request->type;
         $produit->id_design=$request->design;
         $produit->save();
-        return redirect()->route('commande.index')->with('success');
+        return redirect()->route('orders.index')->with("message_falsh",'Product is updated');
     }
 
     /**
@@ -115,7 +115,7 @@ class ProduitController extends Controller
         $commande=Commande::find($produit->id_commande);
         $commande->quantite=$commande->produits->count();
         $commande->save();
-        return redirect()->route('commande.index')->with('success');
+        return redirect()->route('orders.index')->with("message_falsh",'Product is deleted');
 
     }
 }

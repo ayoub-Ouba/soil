@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Flash;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Produit;
 use App\Models\Commande;
+use Illuminate\Support\Facades\Date;
+
+
 
 class PrinterController extends Controller
 {
@@ -14,9 +18,15 @@ class PrinterController extends Controller
         $cmd=Commande::find($produit->id_commande);
         if($produit->print_design==0){
             $produit->print_design=1;
-            $cmd->id_printed1=auth()->user()->id;}
-        else
+            $cmd->id_printed1=auth()->user()->id;
+            $now =carbon::now();
+            $produit->date_print_dtf =$now;
+        }
+        else{
             $produit->print_design=0;
+        }
+    
+
         $produit->save();
        
         $prods=$cmd->produits;
@@ -26,37 +36,43 @@ class PrinterController extends Controller
                 $isPrinted1=false;
         }
         if($isPrinted1){
-            $cmd->status="printed1";
-            
+            $cmd->status="printed1";            
         }else{
             $cmd->status="prepared";
         }
         $cmd->save();
-        return redirect()->route('xx')->with("succes");
+        return redirect()->route('home')->with("message_falsh",'Product is printed');
     }
 
     public function IsPrinted2($idP){
         $produit=Produit::find($idP);
-        if($produit->print_design_v_fnl==0)
+        $cmd=Commande::find($produit->id_commande);
+        if($produit->print_design_v_fnl==0){
             $produit->print_design_v_fnl=1;
+            $now = Carbon::now();
+            $cmd->id_printed2=auth()->user()->id;
+            $produit->date_print_dtf =$now;
+        }
         else
             $produit->print_design_v_fnl=0;
         $produit->save();
-        $cmd=Commande::find($produit->id_commande);
         $prods=$cmd->produits;
+
         $isPrinted2=true;
         foreach($prods as $prod){
             if($prod->print_design_v_fnl!==1)
                 $isPrinted2=false;
         }
         if($isPrinted2){
-            $cmd->status="printed2";
+            $cmd->status="done";
+            $cmd->date_done=Date::today();
             $cmd->id_printed2=auth()->user()->id;
+           
         }else{
             $cmd->status="printed1";
         }
         $cmd->save();
-        return redirect()->route('xx')->with("succes");
+        return redirect()->route('home')->with("message_falsh",'Product is done');
     }
     public function history(){
         $cmd_p1=Commande::where('id_printed1',auth()->user()->id)->get();

@@ -26,3 +26,12 @@ button: 'Okay',
   </script>
 
 @endif
+@if(Session::has('message_falsh'))
+    <script>
+        toastr.option={
+            "progressBar":true,
+            "closeButton":true,
+        }
+        toastr.success("{{Session::get('message_falsh')}} ",'Succes !',{timeOut:12000})
+    </script>
+    @endif 

@@ -42,11 +42,11 @@
                             <label for="user_rol">State</label>
                             <select class="form-control" name="user_role" id="user_rol">
                                 <option value="admin">Admin</option>
-                                <option value="confirmateur">Confirmator</option>
+                                <option value="confirmateur">Confirmer</option>
                                 <option value="manager">Manager</option>
                                 <option value="dropshiper">Dropshiper</option>
-                                <option value="printer1">printer 1</option>
-                                <option value="printer2">printer 2</option>
+                                <option value="printer1">Dtf printer</option>
+                                <option value="printer2"> Hoodie printer</option>
                             </select>
                         </div>
                         <div class="form-group">

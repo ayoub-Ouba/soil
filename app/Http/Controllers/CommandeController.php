@@ -62,7 +62,7 @@ class CommandeController extends Controller
     
 
         $commande->save();
-        return redirect()->route('commande.index')->with('success');
+        return redirect()->route('orders.index')->with("message_falsh",'Order is add');
         
     }
 
@@ -103,13 +103,13 @@ class CommandeController extends Controller
         $commande=Commande::find($id);
         $commande->fullName=$request->full_name;
         $commande->Total=$request->total;
-        $commande->comment=$request->comment;
+        $commande->commentaire=$request->comment;
         $commande->adress=$request->adresse;
         $commande->city=$request->city;
         $commande->number=$request->number;
         $commande->socialmedia=$request->socialmedia." : ".$request->socialmediaV;
         $commande->save();
-        return redirect()->route('commande.index')->with('success');
+        return redirect()->route('orders.index')->with("message_falsh",'Order is updated');
     }
 
     /**
@@ -123,6 +123,6 @@ class CommandeController extends Controller
         $commande=Commande::find($id);
         Produit::where('id_commande', $id)->delete();
         $commande->delete();
-        return redirect()->route('commande.index')->with('success');
+        return redirect()->route('orders.index')->with("message_falsh",'Order is deleted');
     }
 }

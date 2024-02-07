@@ -21,14 +21,14 @@ class Orders_confirmController extends Controller
             $commande->status='confirmed';
         }
         $commande->save();
-        return redirect()->route('xx')->with("succes");
+        return redirect()->route('home')->with("succes");
         
     }
     public function comment(Request $reques, $id){
         $commande=Commande::find($id);
         $commande->commentaire_confirmateur=$reques->comment;
         $commande->save();
-        return redirect()->route('xx')->with("succes");
+        return redirect()->route('home')->with("succes");
     }
 
 }

@@ -3,7 +3,7 @@
 
 <!-- LOGO -->
 <div class="topbar-left">
-    <a href="/" class="logo">
+    <a href="/home" class="logo">
         <span>
                 <h1 style="color: white; ">Soil</h1>
             </span>

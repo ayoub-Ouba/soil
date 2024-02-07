@@ -76,19 +76,19 @@
                                         <div class="wrapper">
                                                 <div class="icon facebook">
                                                     <div class="tooltip" >Date Commande</div>
-                                                    <div class="">{{$commande->datecommande}}</div> 
+                                                    <div >{{$commande->datecommande}}</div> 
                                                 </div>
                                         </div>
                                         <div class="wrapper">
                                                 <div class="icon facebook">
                                                     <div class="tooltip" >Date Validation</div>
-                                                    <div class="">{{$commande->datevalidation}}</div> 
+                                                    <div >{{$commande->date_done}}</div> 
                                                 </div>
                                         </div>
                                         <div class="wrapper">
                                                 <div class="icon facebook">
                                                     <div class="tooltip">Date Livraison</div>
-                                                    <div class="">{{$commande->datelivraison}}</div> 
+                                                    <div >{{$commande->datelivraison}}</div> 
                                                 </div>
                                         </div>
                                                 <!-- <div class="myDIV"><span> Date Livraison</span>   <span >01/01/2023</span></div> -->

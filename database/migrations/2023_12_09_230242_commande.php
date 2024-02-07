@@ -24,6 +24,7 @@ class Commande extends Migration
             $table->String("city");
             $table->String("number");
             $table->date("datecommande")->default(DB::raw('CURRENT_DATE'));
+            $table->date("date_done")->nullable();
             $table->date("datevalidation")->nullable();
             $table->date("datelivraison")->nullable();
             $table->String("status")->default('prepared');

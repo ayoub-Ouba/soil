@@ -248,6 +248,7 @@
             </ul>
         </div>
     @endif
+ 
 
     <!--End showing Validation Errors here-->
     <div class="row">
@@ -379,10 +380,12 @@
     </div>
 </div>
  </div> 
-</div> 
+</div>
+
 @endsection
 
 @section('script')
+
 <!-- Responsive-table-->
 
 @endsection
@@ -391,7 +394,6 @@
 @section('breadcrumb')
         <div class="col-sm-6">
             <h4 class="page-title text-left">Orders</h4>
-           
         </div>
     @endsection
 
@@ -430,8 +432,6 @@
                                 <th  data-priority="9"class="comment" style="width: 50px;">Comment</th>
                                 <th  data-priority="10" >Dropshiper</th>
                                 <th  data-priority="11" >Design printed</th>
-                               
-                                
                             </tr>
                         </thead>
                         <tbody>
@@ -441,9 +441,7 @@
                         @foreach ($commande->produits as $produit)
                         
                         <tr> 
-                            <td>{{$produit->id_commande }} </td>
-
-
+                            <td>{{$produit->id_commande }}</td>
                             <?php $designs_var=["design_front","design_back","design_3","design_4"]; ?>
                             @for($i=0;$i<4;$i++)
                                 @if($produit->design->{$designs_var[$i]}!=null)
@@ -464,9 +462,7 @@
                                    @else
                                    <td class="text-center" >-----</td>
                                 @endif
-                                @endfor
-
-
+                            @endfor
                             <td>{{$produit->color }}</td>
                             <td>{{$produit->taille }}</td>
 
@@ -483,20 +479,18 @@
                             <td>{{$produit->commande->user->fullName }}</td>
                             
                            <td >
+                            <!-- <div class="form-check form-switch ml-3">
+                                    <input style="width: 50px; height: 20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked{{$produit->id}}" name="printer"   
+                                        onclick="event.preventDefault(); document.getElementById('dtf{{$produit->id}}').click();" {{$produit->print_design == 1 ? 'checked' : ''}} {{$produit->print_design == 1 ? 'disabled' : ''}}/>
+                                    <a href="#confirm_dtf{{$produit->id}}" data-toggle="modal" id="dtf{{$produit->id}}"></a>
+                                </div> -->
                                 <div class="form-check form-switch ml-3" >
-                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"  onclick="event.preventDefault();document.getElementById('printer_{{$produit->id}}').submit();" 
-                                    {{$produit->print_design==1?'checked':''}} {{$produit->print_design_v_fnl==1?'disabled':''}} >
-                                    
-                                    <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-                                    <form id="printer_{{$produit->id}}" action="{{'printed1/'. $produit->id }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"   
+                                        onclick="event.preventDefault(); document.getElementById('dtf{{$produit->id}}').click();" {{$produit->print_design==1?'checked':''}} {{$produit->print_design==1?'disabled':''}}/>
+                                    <a href="#confirm_dtf{{$produit->id}}" data-toggle="modal" id="dtf{{$produit->id}}"></a>
+                                </div> 
                             </td>
-
-                                </tr>
-                               
-                            
+                        </tr>
                         @endforeach
                         @endif
                         @endif
@@ -509,6 +503,11 @@
 </div>
  </div> 
 </div> 
+@foreach ($commandes as $commande)
+    @foreach ($commande->produits as $produit)
+        @include('includes.confirm_dtf')
+    @endforeach
+@endforeach
 @endsection
 
 
@@ -545,7 +544,6 @@
                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="">
                             <tr class="">
-                                <!-- <th  data-priority="1" style="width: 20px;">Id</th> -->
                                 <th  data-priority="1" >Order</th>
                                 <th  data-priority="2" >Design 1</th>
                                 <th  data-priority="3" >Design 2</th>
@@ -564,6 +562,7 @@
                         
                         @foreach($commandes as $commande)
                         @if($commande->status=="printed1")
+                        @if($commande->id_printed2==null || $commande->id_printed2==auth()->user()->id)
                         @foreach ($commande->produits as $produit)
                        
                         
@@ -617,19 +616,18 @@
                                 </div>
                             </td>
                             <td >
+
+                              
                                 <div class="form-check form-switch ml-3" >
-                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"  onclick="event.preventDefault();document.getElementById('printer2_{{$produit->id}}').submit();" 
-                                    {{$produit->print_design_v_fnl==1?'checked':''}} {{$produit->print_design==1?'':'disabled'}} >
-                                    
-                                    <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-                                    <form id="printer2_{{$produit->id}}" action="{{'printed2/'. $produit->id }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"   
+                                        onclick="event.preventDefault(); document.getElementById('dtf{{$produit->id}}').click();" {{$produit->print_design_v_fnl==1?'checked':''}} {{$produit->print_design_v_fnl==1?'disabled':''}}/>
+                                    <a href="#confirm_hoodiprint{{$produit->id}}" data-toggle="modal" id="dtf{{$produit->id}}"></a>
+                                </div> 
                             </td>
 
                                 </tr>
                                 @endforeach
+                                @endif
                                 @endif
                         @endforeach
                     </tbody>
@@ -640,6 +638,12 @@
 </div>
  </div> 
 </div> 
+@foreach ($commandes as $commande)
+    @foreach ($commande->produits as $produit)
+        @include('includes.confirm_hoodiprint')
+    @endforeach
+@endforeach
+
 @endsection
 
 @section('script')
