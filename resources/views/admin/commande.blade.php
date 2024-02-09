@@ -38,50 +38,45 @@
                         <thead>
                             <tr>
                                 <!-- <th  data-priority="1" style="width: 20px;">Id</th> -->
-                                <th  data-priority="1" >ID</th>
-                                <th  data-priority="2" >Client Name </th>
-                                <th  data-priority="3"  style="width: 50px;" >Phone</th>
-                                <th  data-priority="4" >Adress</th>
-                                <th  data-priority="5" >Total</th>
-                                <th  data-priority="9" >Commentaire</th>
-                                <th  data-priority="7"  style="width: 20px;">Quantity</th>
+                                <th  data-priority="1" >Id</th>
+                                <th  data-priority="2" >Customer  </th>
                                 <th  data-priority="1"  style="width: 50px;">Social Media</th>
-                                <th  data-priority="8" >status</th><th  data-priority="9" >Date</th>
+                                <th  data-priority="3"  style="width: 50px;" >Phone Number</th>
+                                <th  data-priority="4" >Address</th>
+                                <th  data-priority="7"  style="width: 20px;">Quantity</th>
+                                <th  data-priority="5" >Total Amount</th>
+                                <th  data-priority="8" >Status</th><th  data-priority="9" >Date time</th>
+                                <th  data-priority="9" >Dropshiper Comment</th>
                                 <th data-priority="10" >products </th>
                                 <th data-priority="6" >Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                           
                                 <!-- <td></td> -->
 
                                 @foreach ($commandes as $commande)
+                                <?php $adress=$commande->city.': '.$commande->adress;?>
                                 <tr>
                                     <td>{{$commande->id}} </td>
-                                    <td>{{$commande->fullName}} </td><td> {{$commande->number}} </td><td>{{$commande->adress}}</td>
-                                    <td>{{$commande->Total}} </td>
-                                   
-                                    <td class="{{ strlen($commande->commentaire) > 28 ? 'comment-cell2' : '' }}">
-                                @if($commande->commentaire != null)
-                                    <div class="{{ strlen($commande->commentaire) > 28 ? 'comment_pr_2' : '' }}">
-                                        {{$commande->commentaire}} 
+                                    <td>{{$commande->fullName}} </td><td>{{$commande->socialmedia}}</td>
+                                    <td> {{$commande->number}} </td>
+                                    <td>
+                                    <div class="{{ strlen($adress) > 28 ? 'comment_pr_2' : '' }}">
+                                        <b>{{$commande->city}}:</b> {{$commande->adress}}
                                     </div>
-                                @else
-                                    <div>no comment</div>
-                                @endif
-                            </td>
-
-                                    <td>{{$commande->quantite}}</td><td>{{$commande->socialmedia}}</td> <td>{{$commande->status}}</td>
+                                    </td>
+                                    <td>{{$commande->quantite}}</td> <td>{{$commande->Total}} </td><td>{{$commande->status}}</td>
                                     <td>
                                         <div class="wrapper">
                                                 <div class="icon facebook">
-                                                    <div class="tooltip" >Date Commande</div>
+                                                    <div class="tooltip" >Date Order</div>
                                                     <div >{{$commande->datecommande}}</div> 
                                                 </div>
                                         </div>
                                         <div class="wrapper">
                                                 <div class="icon facebook">
-                                                    <div class="tooltip" >Date Validation</div>
+                                                    <div class="tooltip" >Date Done</div>
                                                     <div >{{$commande->date_done}}</div> 
                                                 </div>
                                         </div>
@@ -93,22 +88,27 @@
                                         </div>
                                                 <!-- <div class="myDIV"><span> Date Livraison</span>   <span >01/01/2023</span></div> -->
                                     </td>
+                                    <td class="{{ strlen($commande->commentaire) > 28 ? 'comment-cell2' : '' }}">
+                                        @if($commande->commentaire != null)
+                                            <div class="{{ strlen($commande->commentaire) > 28 ? 'comment_pr_2' : '' }}">
+                                                {{$commande->commentaire}} 
+                                            </div>
+                                        @else
+                                            <div>no comment</div>
+                                        @endif
+                                    </td>
                                     <td>
-                                       
-                                            @foreach ($commande->produits as $produit)
-                                                <div class=" d-flex justify-content-between myDIV"> 
-                                                    <div class=" mt-1">{{$produit->design->design_name}} / {{$produit->color}} / {{$produit->taille}} / {{$produit->type_product->type_product}} </div>
-                                                    @if(auth()->user()->state=='dropshiper' && $commande->status == 'prepared')
-                                                        <div class="hide ml-2">
-                                                            <a href="#editP{{$produit->id}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> </a>
-                                                            <a href="#deleteP{{$produit->id}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i></a>
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            @endforeach
-                                        
-                                        
-                                        
+                                        @foreach ($commande->produits as $produit)
+                                            <div class=" d-flex justify-content-between myDIV"> 
+                                                <div class=" mt-1">{{$produit->design->design_name}} / {{$produit->color}} / {{$produit->taille}} / {{$produit->type_product->type_product}} </div>
+                                                @if(auth()->user()->state=='dropshiper' && $commande->status == 'prepared')
+                                                    <div class="hide ml-2">
+                                                        <a href="#editP{{$produit->id}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> </a>
+                                                        <a href="#deleteP{{$produit->id}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i></a>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @endforeach
                                     </td>
                                     <td style="width: 100px;">
                                         @if ($commande->status == 'prepared')

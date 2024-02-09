@@ -20,27 +20,6 @@
                         <label for="full_name" class="control-label">Client Name</label>
                         <input type="text" class="form-control" id="full_name" name="full_name" value="{{$commande->fullName}}" required>
                     </div>
-
-                    <div class="form-group">
-                        <label for="number" class="control-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="number" name="number" value="{{$commande->number}}" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="adresse">Adresse</label>
-                        <input type="text" class="form-control" value="{{$commande->adress}}" id="adresse" name="adresse" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" class="form-control" value="{{$commande->city}}" id="city" name="city" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="total">Total</label>
-                        <input type="number" class="form-control" value="{{$commande->Total}}" id="total" name="total" required />
-                    </div>
-
                     <?php
                         $SM = explode(" : ", $commande->socialmedia, 2);
                     ?>
@@ -54,12 +33,29 @@
                         </select>
                         <input type="text" class="form-control" id="socialmediaV" name="socialmediaV" value="{{$SM[1]}}" required />
                     </div>
+                    <div class="form-group">
+                        <label for="number" class="control-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="number" name="number" value="{{$commande->number}}" required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" value="{{$commande->city}}" id="city" name="city" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adresse">Address</label>
+                        <input type="text" class="form-control" value="{{$commande->adress}}" id="adresse" name="adresse" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="total">Total Amount</label>
+                        <input type="number" class="form-control" value="{{$commande->Total}}" id="total" name="total" required />
+                    </div>
                     <div class="form-group">
                         <label for="comment">Comment</label>
                         <textarea name="comment" class="form-control" id="comment" cols="30" rows="5" >{{$commande->commentaire}}</textarea>
                     </div> 
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i

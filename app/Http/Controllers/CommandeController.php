@@ -62,7 +62,7 @@ class CommandeController extends Controller
     
 
         $commande->save();
-        return redirect()->route('orders.index')->with("message_falsh",'Order is add');
+        return redirect()->route('orders.index')->with("message_falsh",'Order is added');
         
     }
 

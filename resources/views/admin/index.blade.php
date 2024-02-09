@@ -16,16 +16,16 @@
     @section('content')
    
     <div class="row">
-        <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-primary text-white">
             @if (auth()->user()->state=='admin')
-                <div class="card-body">
-                    <div class="mb-4">
-                        <div class="float-left mini-stat-img mr-4">
-                            <span class="ti-id-badge" style="font-size: 20px"></span>
-                        </div>
-                        <h5 class="font-16 text-uppercase mt-0 text-white-50">Admins <br></h5>
-                        <h4 class="font-500">0 </h4>
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary text-white">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <div class="float-left mini-stat-img mr-4">
+                                <span class="ti-id-badge" style="font-size: 20px"></span>
+                            </div>
+                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Users <br></h5>
+                            <h4 class="font-500">{{count($users)}} </h4>
                             <span class="ti-user" style="font-size: 71px"></span>
                         </div>
                         <div class="pt-2">
@@ -36,27 +36,53 @@
                         </div>
                     </div>
                 </div>
+            </div>
             @else 
-                <div class="card-body">
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary text-white">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <div class="float-left mini-stat-img mr-4">
+                                <span class="fa fa-list" style="font-size: 20px"></span>
+                            </div>
+                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Orders <br></h5>
+                            <h4 class="font-500 ">{{count($comandesall)}}</h4>
+                            <!-- <div class="d-flex"> -->
+                                <span class="ti-calendar" style="font-size: 80px"></span>
+                                <!-- <p class="pl-5">Orders done</p> -->
+                            <!-- </div> -->
+                        </div>
+                        <div class="pt-2">
+                            <div class="float-right">
+                                <a href="/orders" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a>
+                            </div>
+                            <p class="text-white-50 mb-0">More info</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary text-white">
+                    <div class="card-body">
                         <div class="mb-4">
                             <div class="float-left mini-stat-img mr-4">
                                 <span class="fas fa-paint-brush" style="font-size: 20px"></span>
                             </div>
                             <h5 class="font-16 text-uppercase mt-0 text-white-50">Designs <br></h5>
                             <h4 class="font-500 ">{{count($designs)}}</h4>
-                                <span class="ti-pencil-alt" style="font-size: 80px"></span>
+                            <span class="ti-pencil-alt" style="font-size: 80px"></span>
+                        </div>
+                        <div class="pt-2">
+                            <div class="float-right">
+                                <a href="/design" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a>
                             </div>
-                            <div class="pt-2">
-                                <div class="float-right">
-                                    <a href="/design" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a>
-                                </div>
-                                <p class="text-white-50 mb-0">More info</p>
-                            </div>
+                            <p class="text-white-50 mb-0">More info</p>
                         </div>
                     </div>
-            @endif
+                </div>
             </div>
-            <div class="col-xl-3 col-md-6">
+            @endif
+            <!-- <div class="col-xl-3 col-md-6">
                 <div class="card mini-stat bg-primary text-white">
                     <div class="card-body">
                         <div class="mb-4">
@@ -77,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-xl-3 col-md-6">
                 <div class="card mini-stat bg-primary text-white">
                     <div class="card-body">
@@ -230,7 +256,7 @@
     
     @section('breadcrumb')
         <div class="col-sm-6">
-            <h4 class="page-title text-left">Orders</h4>
+            <h4 class="page-title text-left">Orders </h4>
            
         </div>
     @endsection
@@ -261,28 +287,26 @@
                             <tr>
                                 <!-- <th  data-priority="1" style="width: 20px;">Id</th> -->
                                 <th  data-priority="1" >ID</th>
-                                <th  data-priority="6" >Dropshiper</th>
-                                <th  data-priority="6" >Dropshiper Comment</th>
-                                <th  data-priority="2" >Client  </th>
-                                <th  data-priority="3"  style="width: 50px;" >Number</th>
-                                <th  data-priority="4" >City</th>
-                                <th  data-priority="4" >Adress</th>
-                                <th  data-priority="1"  style="width: 50px;">Social Media</th>
-                        
-                                <th  data-priority="7"  style="width: 20px;">Quantity</th>
-                                <th  data-priority="5" >Total</th>
-                               
-                                <th  data-priority="9" style="width: 20px;">Date</th>
-                                <th data-priority="9" >products </th>
-                                <th data-priority="7" >confirmation</th>
-                                <th data-priority="7" >Your Comment</th>
-                                
+                                <th  data-priority="2" >Dropshipper</th>
+                                <th  data-priority="3" >Dropshipper Comment</th>
+                                <th  data-priority="4" >Customer  </th>
+                                <th  data-priority="5" >Social Media</th>
+                                <th  data-priority="6" >Phone Number</th>
+                                <th  data-priority="7" >Address</th>
+                                <th  data-priority="8" >Quantity</th>
+                                <th  data-priority="9" >Total Amount</th>
+                                <th  data-priority="10" >Products </th>
+                                <th data-priority="11" > Date Order</th>
+                                <th data-priority="12" >Audio upload</th>
+                                <th data-priority="13" >Audio record</th>
+                                <th data-priority="14" >Confirmation</th>
+                                <th data-priority="15" >Your Comment</th>
                             </tr>
                         </thead>
                         <tbody class="">
-                           
                         @foreach ($commandes as $commande)
-                        @if($commande->status=="printed2" || $commande->status=="confirmed" )
+                        @if($commande->status=="prepared" && count($commande->produits)!=0) 
+                        <?php $adress=$commande->city.': '.$commande->adress;?>
                         <tr> 
                             <td>{{$commande->id}} </td>
                             <td > {{$commande->user->fullName}} </td>
@@ -295,32 +319,13 @@
                                     <div>no comment</div>
                                 @endif
                             </td>
-                            <td>{{$commande->fullName}} </td><td> {{$commande->number}} </td><td>{{$commande->city}}</td>
-                            <td>{{$commande->adress}}</td>
-                            
-                           
-                           
-                            <td>{{$commande->socialmedia}}</td><td>{{$commande->quantite}}</td> <td>{{$commande->Total}} </td> 
-                            <td >
-                                <div class="wrapper">
-                                        <div class="icon facebook">
-                                            <div class="tooltip" >Date Commande</div>
-                                            <div class="">{{$commande->datecommande}}</div> 
-                                        </div>
+                            <td>{{$commande->fullName}} </td><td>{{$commande->socialmedia}}</td> <td> {{$commande->number}} </td>
+                            <td> 
+                                <div class="{{ strlen($adress) > 28 ? 'comment_pr_2' : '' }}">
+                                    <b>{{$commande->city}}:</b> {{$commande->adress}}
                                 </div>
-                                <div class="wrapper">
-                                        <div class="icon facebook">
-                                            <div class="tooltip" >Date Validation</div>
-                                            <div class="">{{$commande->datevalidation}}</div> 
-                                        </div>
-                                </div>
-                                <div class="wrapper">
-                                        <div class="icon facebook">
-                                            <div class="tooltip">Date Livraison</div>
-                                            <div class="">{{$commande->datelivraison}}</div> 
-                                        </div>
-                                </div><!-- <div class="myDIV"><span> Date Livraison</span>   <span >01/01/2023</span></div> -->
                             </td>
+                            <td>{{$commande->quantite}}</td> <td>{{$commande->Total}} DH </td> 
                             <td style="width: 70px;">
                                 @foreach ($commande->produits as $produit)
                                     <div class=" d-flex justify-content-between myDIV"> 
@@ -335,18 +340,61 @@
                                 @endforeach
                             </td>
                             <td >
-                                <div class="form-check form-switch ml-3" >
-                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="confirmation"  
-                                        onclick="event.preventDefault();document.getElementById('confirmation').submit();" 
-                                    {{$commande->confirmation==1?'checked':''}} >
-                                    
-                                    <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-                                    <form id="confirmation" action="{{ 'confirmation_order/'. $commande->id}}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                                <div class="wrapper">
+                                    <div class="icon facebook">
+                                        <div class="tooltip" >Date Commande</div>
+                                        <div class="">{{$commande->datecommande}}</div> 
+                                    </div>
                                 </div>
+                                <div class="wrapper">
+                                    <div class="icon facebook">
+                                        <div class="tooltip" >Date Validation</div>
+                                        <div class="">{{$commande->datevalidation}}</div> 
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                        <div class="icon facebook">
+                                            <div class="tooltip">Date Livraison</div>
+                                            <div class="">{{$commande->datelivraison}}</div> 
+                                        </div>
+                                </div><!-- <div class="myDIV"><span> Date Livraison</span><span >01/01/2023</span></div> -->
                             </td>
-                            @if($commande->commentaire_confirmateur==null)
+                            {{-- audio upload --}}
+                            
+                            <td >
+                                @if ($commande->audio1 == null)
+                                <form action="/uploadaudio1/{{$commande->id}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="file" name="audio_upload_1" accept="audio/*" required>
+                                    <button type="submit">Save</button>
+                                </form>
+                            @else
+                                <audio controls>
+                                    <source src="{{ asset('images/' . $commande->audio1) }}" type="audio/mp3">
+                                    Your browser does not support the audio tag.
+                                </audio>
+
+                            @endif
+                                
+                            </td>
+                            
+                            <td >
+                                <!-- {{-- audio record --}} -->
+                                <!-- <div>
+                                    <button type="button" id="startRecord_{{$commande->id}}" onclick="startRecording({{$commande->id}})">Start Recording</button>
+                                    <button type="button" id="stopRecord_{{$commande->id}}" onclick="stopRecording({{$commande->id}})" disabled>Stop Recording</button>
+                                    <audio id="audioPlayer_{{$commande->id}}" controls></audio>
+                                    <button type="button" type="button" id="saveButton_{{$commande->id}}" onclick="saveRecording({{$commande->id}});">Save</button>
+                                </div>  -->
+                            </td>
+                            <td >
+                                <div class="form-check form-switch ml-3" >
+                                    <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"   
+                                        onclick="event.preventDefault(); document.getElementById('cnf{{ $commande->id}}').click();" {{$commande->confirmation==1?'checked':''}}/>
+                                    <a href="#confirm_cnf{{ $commande->id}}" data-toggle="modal" id="cnf{{ $commande->id}}"></a>
+                                </div> 
+                            </td>
+                            @if($commande->commentaire_confirmateur1==null)
                                 <td>
                                 <div class="form-group">
                                 <!-- <label for="comment">Comment</label> -->
@@ -364,24 +412,61 @@
                             
                                 </td>
                             @else
-                                <td class="{{ strlen($commande->commentaire_confirmateur) > 28 ? 'comment-cell' : '' }}">
-                                    <div class="{{ strlen($commande->commentaire_confirmateur) > 28 ? 'comment_pr_1' : '' }}">
-                                        {{$commande->commentaire_confirmateur}}
+                                <td class="{{ strlen($commande->commentaire_confirmateur1) > 28 ? 'comment-cell' : '' }}">
+                                    <div class="{{ strlen($commande->commentaire_confirmateur1) > 28 ? 'comment_pr_1' : '' }}">
+                                        {{$commande->commentaire_confirmateur1}}
                                     </div>
                             </td>
-                            @endif
+                            {{-- @endif --}}
                         </tr>
                         @endif
+                        @endif
                         @endforeach
+                        
                     </tbody>
                 </table>
+                {{-- <audio controls>
+                    <source src="{{ asset('images/' . $commandes[0]->audio1) }}" type="audio/mp3">
+                    Your browser does not support the audio tag.
+                </audio>
+                {{$commandes[0]->audio1}} --}}
+                {{-- <audio controls>
+                    <source src="{{ asset('images/' . $commandes[0]->audio1) }}" type="audio/mp3">
+                    Your browser does not support the audio tag.
+                </audio>
+                <p>Dynamic File Path: {{ asset('images/' . $commandes[0]->audio1) }}</p> --}}
+
+                
+                
             </div>
             </div>
     </div>
 </div>
  </div> 
-</div>
+</div> 
+{{-- <script>
+    function startRecording(id){
+        console.log('startRecord_' + id);
 
+        var startButton = document.getElementById('startRecord_' + id);
+        var stopButton = document.getElementById('stopRecord_' + id);
+        // console.log('Button element:', startButton);
+
+        // // Disable the button
+        startButton.disabled = true;
+        console.log('Button disabled');
+
+        console.log('Button element:', startButton);
+    }
+</script> --}}
+
+{{-- <script src="{{ asset('js/recorder.js') }}"></script> --}}
+{{-- <script src="{{ asset('js/record1.js') }}"></script> --}}
+
+@foreach ($commandes as $commande)
+        @include('includes.confirm_cnf')
+   
+@endforeach
 @endsection
 
 @section('script')
@@ -422,21 +507,21 @@
                             <tr>
                                 <!-- <th  data-priority="1" style="width: 20px;">Id</th> -->
                                 <th  data-priority="1" >Order</th>
-                                <th  data-priority="2" >Design 1</th>
-                                <th  data-priority="3" >Design 2</th>
+                                <th  data-priority="2" >Front Design </th>
+                                <th  data-priority="3" >Back Design </th>
                                 <th  data-priority="4" >Design 3 </th>
                                 <th  data-priority="5"  >Design 4</th>
+                                <th  data-priority="8" >Type</th>
                                 <th  data-priority="6" >Color</th>
                                 <th  data-priority="7" >Size</th>
-                                <th  data-priority="8" >Type</th>
-                                <th  data-priority="9"class="comment" style="width: 50px;">Comment</th>
-                                <th  data-priority="10" >Dropshiper</th>
-                                <th  data-priority="11" >Design printed</th>
+                                <th  data-priority="10" >Dropshipper</th>
+                                <th  data-priority="9"class="comment" style="width: 50px;">Comment Dropshipper</th>
+                                <th  data-priority="11" >Is Printed</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($commandes as $commande)
-                        @if($commande->status=="prepared")
+                        @if($commande->status=="confirmed")
                          @if($commande->id_printed1==null || $commande->id_printed1==auth()->user()->id)
                         @foreach ($commande->produits as $produit)
                         
@@ -463,10 +548,10 @@
                                    <td class="text-center" >-----</td>
                                 @endif
                             @endfor
-                            <td>{{$produit->color }}</td>
-                            <td>{{$produit->taille }}</td>
-
                             <td>{{$produit->type_product->type_product }}</td>
+                            <td>{{$produit->color }}</td>
+                            <td>{{$produit->taille }}</td> 
+                            <td>{{$produit->commande->user->fullName }}</td>                         
                             <td class="{{ strlen($commande->commentaire) > 28 ? 'comment-cell' : '' }}">
                                 @if($commande->commentaire != null)
                                     <div class="{{ strlen($commande->commentaire) > 28 ? 'comment_pr_1' : '' }}">
@@ -476,7 +561,7 @@
                                     <div>no comment</div>
                                 @endif
                             </td>
-                            <td>{{$produit->commande->user->fullName }}</td>
+                            
                             
                            <td >
                             <!-- <div class="form-check form-switch ml-3">
@@ -516,7 +601,7 @@
 @elseif(auth()->user()->state=='printer2') 
 @section('breadcrumb')
         <div class="col-sm-6">
-            <h4 class="page-title text-left">Orders Printer 2</h4>
+            <h4 class="page-title text-left">Orders</h4>
            
         </div>
     @endsection
@@ -545,17 +630,17 @@
                         <thead class="">
                             <tr class="">
                                 <th  data-priority="1" >Order</th>
-                                <th  data-priority="2" >Design 1</th>
-                                <th  data-priority="3" >Design 2</th>
+                                <th  data-priority="2" >Front Design </th>
+                                <th  data-priority="3" >Back Design </th>
                                 <th  data-priority="4" >Design 3 </th>
                                 <th  data-priority="5"  >Design 4</th>
+                                <th  data-priority="8" >Type</th>
                                 <th  data-priority="6" >Color</th>
                                 <th  data-priority="7" >Size</th>
-                                <th  data-priority="8" >Type</th>
-                                <th  data-priority="12" >Comment</th>
-                                <th  data-priority="11" >Dropshiper</th>
-                                <th  data-priority="9"  >Design printed 1</th>
-                                <th  data-priority="10" style="width:100px;">Design printed 2</th>
+                                <th  data-priority="11" >Dropshipper</th>
+                                <th  data-priority="12" >Comment Dropshipper</th>
+                                <th  data-priority="9"  >Product Printed</th>
+                                <th  data-priority="10" style="width:100px;">Product Done</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -592,12 +677,10 @@
                                 @endif
                                 @endfor
 
-
+                            <td>{{$produit->type_product->type_product }}</td>
                             <td>{{$produit->color }}</td>
                             <td>{{$produit->taille }}</td>
-
-                            <td>{{$produit->type_product->type_product }}</td>
-                           
+                            <td>{{$produit->commande->user->fullName }}</td>
                             <td class="{{ strlen($commande->commentaire) > 28 ? 'comment-cell2' : '' }}">
                                 @if($commande->commentaire != null)
                                     <div class="{{ strlen($commande->commentaire) > 28 ? 'comment_pr_2' : '' }}">
@@ -607,8 +690,6 @@
                                     <div>no comment</div>
                                 @endif
                             </td>
-                            <td>{{$produit->commande->user->fullName }}</td>
-                            
                            <td >
                                 <div class="form-check form-switch ml-3" style="width: 100px;" >
                                     <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"  
@@ -643,8 +724,11 @@
         @include('includes.confirm_hoodiprint')
     @endforeach
 @endforeach
-
 @endsection
+
+
+
+
 
 @section('script')
 <!-- Responsive-table-->
@@ -658,7 +742,10 @@
 <script src="{{ URL::asset('plugins/chartist/js/chartist-plugin-tooltip.min.js') }}"></script>
 
 
+
+
 <!-- peity JS -->
 <script src="{{ URL::asset('plugins/peity-chart/jquery.peity.min.js') }}"></script>
 <script src="{{ URL::asset('assets/pages/dashboard.js') }}"></script>
 @endsection
+

@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="taille">Taille</label>
+                            <label for="taille">Size</label>
                             <select class="form-control" name="taille" id="taille">
                                 <option value="S">S</option>
                                 <option value="M">M</option>
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="design">Designs</label>
+                            <label for="design">Design</label>
                             <select class="form-control" name="design" id="design">
                                 @foreach ($designs as $design)
                                     <option value="{{$design->id}}">{{$design->design_name}}</option>

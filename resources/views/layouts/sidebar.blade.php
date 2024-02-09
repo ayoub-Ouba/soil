@@ -73,6 +73,24 @@
                                     </a>
                                 </li>
                             @endif
+
+                            @if(auth()->user()->state=='confirmateur')
+                                <li class="orders">
+                                        <a href="/home" class="waves-effect {{ request()->is("orders") || request()->is("orders/*") ? "mm active" : "" }}">
+                                        <i class="ti-calendar"></i> <span>Orders prepared</span>
+                                        </a>
+                                </li>
+                                <li class="orders">
+                                    <a href="/orderDone" class="waves-effect {{ request()->is("orders") || request()->is("orders/*") ? "mm active" : "" }}">
+                                    <i class="ti-calendar"></i> <span>Orders done</span>
+                                    </a>
+                            </li>
+                                <li class="">
+                                    <a href="/Confirmateur_History" class="waves-effect {{ request()->is("Design") || request()->is("Design/*") ? "mm active" : "" }}">
+                                    <i class="ti-server"></i> <span>History </span>
+                                    </a>
+                                </li>
+                            @endif
                            
                             <li class="">
                                 <a href="{{ route('logout') }}"  onclick="event.preventDefault();document.getElementById('logout-form').submit();" 

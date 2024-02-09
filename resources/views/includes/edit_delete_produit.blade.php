@@ -30,7 +30,7 @@
                         
                     <div class="form-group">
                         
-                        <label for="taille">Taille</label>
+                        <label for="taille">Size</label>
                         <select class="form-control" name="taille" id="taille">
                             @foreach ($T as $t)
                                 @if($t == $produit->taille)
@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="design">Designs</label>
+                        <label for="design">Design</label>
                         <select class="form-control" name="design" id="design">
                             @foreach ($designs as $design)
                                 @if($design->id == $produit->id_design)

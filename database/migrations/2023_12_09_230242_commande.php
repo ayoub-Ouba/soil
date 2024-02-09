@@ -23,16 +23,22 @@ class Commande extends Migration
             $table->String("adress");
             $table->String("city");
             $table->String("number");
-            $table->date("datecommande")->default(DB::raw('CURRENT_DATE'));
-            $table->date("date_done")->nullable();
-            $table->date("datevalidation")->nullable();
-            $table->date("datelivraison")->nullable();
+            $table->dateTime("datecommande")->default(DB::raw('NOW()'));
+            $table->dateTime("date_done")->nullable();
+            $table->dateTime("datevalidation")->nullable();
+            $table->dateTime("datelivraison")->nullable();
             $table->String("status")->default('prepared');
             $table->String("socialmedia");
             $table->boolean("confirmation")->default(false);
-            $table->string("commentaire_confirmateur")->nullable();
+            $table->boolean("confirmation2")->default(false);
+            $table->string("commentaire_confirmateur1")->nullable();
+            $table->string("commentaire_confirmateur2")->nullable();
+            $table->string("audio1")->nullable();
+            $table->string("audio2")->nullable();
             $table->foreignId('id_user')->references('id')->on('users');
-            $table->integer("id_printed1")->nullable(); $table->integer("id_printed2")->nullable();
+            $table->foreignId("id_printed1")->nullable()->references('id')->on('users');
+            $table->foreignId("id_printed2")->nullable()->references('id')->on('users');
+            $table->foreignId("id_confirmateur")->nullable()->references('id')->on('users');
           
             $table->timestamps();
         });

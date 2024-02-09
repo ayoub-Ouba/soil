@@ -53,7 +53,7 @@ class UserController extends Controller
             $user->password=Hash::make($request->password_confirmation);
             $user->image =$nomPhoto;
             $user->save();
-            return redirect()->route('users.index')->with('success');
+            return redirect()->route('users.index')->with("message_falsh",'The user is added');
     }
 
     /**
@@ -93,7 +93,7 @@ class UserController extends Controller
         $user->number = $request->number;
         $user->state=$request->user_role;
         $user->save();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with("message_falsh",'The user is updated');
     }
 
     /**
@@ -112,6 +112,6 @@ class UserController extends Controller
             }
          }
         $user->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with("message_falsh",'The user is deleted');
     }
 }

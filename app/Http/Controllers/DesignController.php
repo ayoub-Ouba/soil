@@ -41,8 +41,8 @@ class DesignController extends Controller
     public function store(Request $request)
     {
         $request->validate(['design_name'=>'required|unique:designs,design_name','version_design'=>'required|in:black,white',
-        'design_front' => 'mimes:png,pdf|max:80000','design_back' => 'mimes:png,pdf|max:80000',
-        'design_3' => 'mimes:png,pdf|max:80000','design_4' => 'mimes:png,pdf|max:80000',]);
+        'design_front' => 'mimes:png,pdf|max:800000','design_back' => 'mimes:png,pdf',
+        'design_3' => 'mimes:png,pdf','design_4' => 'mimes:png,pdf']);
 
         $design=new Design();
         $design->id_user=Auth::user()->id;
@@ -60,7 +60,7 @@ class DesignController extends Controller
         $design->version_design=$request->version_design;
        
         $design->save();
-        return redirect()->route('design.index')->with("message_falsh",'Design is add');
+        return redirect()->route('design.index')->with("message_falsh",'Design is added');
     }
 
     /**

@@ -39,7 +39,7 @@ class Type_produitController extends Controller
             $user = new Type_product();
             $user->type_product = $request->product_type;
             $user->save();
-            return redirect()->route('Types_products.index')->with('success');
+            return redirect()->route('Types_products.index')->with("message_falsh",'The type of product is added');
     }
 
     /**
@@ -76,7 +76,7 @@ class Type_produitController extends Controller
         $tp=Type_product::find($id);
         $tp->type_product = $request->product_type;
         $tp->save();
-        return redirect()->route('Types_products.index')->with('success');
+        return redirect()->route('Types_products.index')->with("message_falsh",'The type of product is updated');
     }
 
     /**
@@ -89,6 +89,6 @@ class Type_produitController extends Controller
     {
         $tp=Type_product::find($id);
         $tp->delete();
-        return redirect()->route('Types_products.index');
+        return redirect()->route('Types_products.index')->with("message_falsh",'The type of product is deleted');
     }
 }

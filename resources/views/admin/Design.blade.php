@@ -37,8 +37,8 @@
                         <thead>
                         <tr>
                             <th data-priority="1" class="text-center">Design Name</th>
-                            <th data-priority="2" class="text-center">Design Front</th>
-                            <th data-priority="3" class="text-center">Design Back</th>
+                            <th data-priority="2" class="text-center">Front Design</th>
+                            <th data-priority="3" class="text-center">Back Design</th>
                             <th data-priority="4" class="text-center"> Design 3 </th>
                             <th data-priority="5" class="text-center">Design 4</th>
                             <th data-priority="6" class="text-center"> Version Design </th>
@@ -53,20 +53,7 @@
                                 @for($i=0;$i<count($designs_var);$i++)
                                 @if($design->{$designs_var[$i]}!=null)
                                     <td >
-                                      <!-- <div class="text-center"> <a href="{{ 'download/' . $design->{$designs_var[$i]} }}">
-                                            <img src="{{ asset('images/' . $design->{$designs_var[$i]}) }}" alt="photo" width="100px" height="100px">
-                                        </a>
-                                     </div>
-                                        <div class="xx">
-                                            <a href="#edit{{$design->id}}" data-toggle="modal" class="btn btn-info btn-sm edit btn-flat ">
-                                                <i class='fa fa-download '></i> Download </a>
-                                        </div> -->
-                                        <!-- <div class="xx">
-                                            <img src="{{ asset('images/' . $design->{$designs_var[$i]}) }}" alt="Snow" >
-                                            <button class="btn"> <i class='fa fa-download '></i></button>
-                                        </div> -->
                                         <div class="container">
-
                                         <?php $extension = pathinfo($design->{$designs_var[$i]}, PATHINFO_EXTENSION); ?>
                                             @if($extension!="pdf")
                                             

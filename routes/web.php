@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('home', function () {
     //     return view('admin.index');
     // });
+  
     Route::get("/home",'\App\Http\Controllers\Orders_confirmController@index')->name("home");
     Route::get('/download/{id}',[GeneralController::class,'download']);   
 });
@@ -55,7 +56,14 @@ Route::middleware(['auth','role:dropshiper'])->group(function () {
 Route::middleware(['auth','role:confirmateur'])->group(function () {
     
     Route::post("/confirmation_order/{id}",'\App\Http\Controllers\Orders_confirmController@confirmation_order');
+    Route::post("/confirmationfinal_order/{id}",'\App\Http\Controllers\Orders_confirmController@confirmation2_order');
     Route::post("/commentaire/{id}",'\App\Http\Controllers\Orders_confirmController@comment');
+    Route::post("/commentaire2/{id}",'\App\Http\Controllers\Orders_confirmController@comment2');
+    Route::get("/Confirmateur_History",'\App\Http\Controllers\Orders_confirmController@history');
+    Route::post('/uploadaudio1/{id}', '\App\Http\Controllers\Orders_confirmController@confirm_audio1_upload');
+    Route::post('/uploadaudio2/{id}', '\App\Http\Controllers\Orders_confirmController@confirm_audio2_upload');
+    Route::get("/orderDone",'\App\Http\Controllers\Orders_confirmController@orderDone')->name("confirm_orderDone");
+    
 //    Route::get("/orders_confirm",'\App\Http\Controllers\Orders_confirmController@index');
     // Route::resource('/design', '\App\Http\Controllers\DesignController');
     // Route::resource('/commande', '\App\Http\Controllers\CommandeController');
@@ -63,3 +71,4 @@ Route::middleware(['auth','role:confirmateur'])->group(function () {
     // Route::post('produit/{id}', '\App\Http\Controllers\ProduitController@storewithCmd');
    
 });
+Route::post('/saveAudio', '\App\Http\Controllers\Orders_confirmController@confirm_audio1');

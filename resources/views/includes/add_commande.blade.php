@@ -18,27 +18,6 @@
                             <label for="full_name">Client Name</label>
                             <input type="text" class="form-control" placeholder="Enter Full Name" id="full_name" name="full_name" required />
                         </div>
-
-                        <div class="form-group">
-                            <label for="number">Phone Number</label>
-                            <input type="tel" class="form-control" placeholder="Enter Number" id="number" name="number" maxlength="10" required />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="adresse">Adresse</label>
-                            <input type="text" class="form-control" placeholder="Enter Adresse" id="adresse" name="adresse" required />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" placeholder="Enter City" id="city" name="city" required />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="total">Total</label>
-                            <input type="number" class="form-control" placeholder="Enter Total" id="total" name="total" required />
-                        </div>
-
                         <div class="form-group">
                             <label for="socialmedia">Social media</label>
                             <select class="form-control" name="socialmedia" id="socialmedia">
@@ -50,6 +29,25 @@
                             <input type="text" class="form-control" placeholder="Enter Social media" id="socialmediaV" name="socialmediaV" required />
                         </div>
 
+                        <div class="form-group">
+                            <label for="number">Phone Number</label>
+                            <input type="tel" class="form-control" placeholder="Enter Number" id="number" name="number" maxlength="10" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" placeholder="Enter City" id="city" name="city" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adresse">Address</label>
+                            <input type="text" class="form-control" placeholder="Enter Adresse" id="adresse" name="adresse" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total">Total Amount</label>
+                            <input type="number" class="form-control" placeholder="Enter Total" id="total" name="total" required />
+                        </div>
                         <div class="form-group">
                             <label for="comment">Comment</label>
                             <textarea name="comment" class="form-control" id="comment" cols="30" rows="5" ></textarea>

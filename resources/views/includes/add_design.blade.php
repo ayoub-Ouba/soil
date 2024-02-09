@@ -20,14 +20,14 @@
                                 required />
                         </div>
                         <div class="form-group">
-                            <label for="design_front" class="control-label">Design Front</label>
+                            <label for="design_front" class="control-label">Front Design</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="design_front" accept="application/pdf,image/png"  name="design_front" required>
                                 <label class="custom-file-label" for="customFileLang" >Select Your Design</label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="design_back" class="control-label">Design Back</label>
+                            <label for="design_back" class="control-label">Back Design</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="design_back" accept="application/pdf,image/png" lang="es" name="design_back">
                                 <label class="custom-file-label" for="customFileLang">Select Your Design</label>

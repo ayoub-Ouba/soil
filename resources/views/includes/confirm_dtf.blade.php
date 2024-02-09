@@ -10,7 +10,7 @@
             <form  action="{{'printed1/'. $produit->id }}" method="POST">
                  @csrf
                 <div class="text-center">
-                    <h6>Are you sure you print designs {{ $produit->id }}</h6>
+                    <h6>Are you sure you print the product</h6>
 
                 </div>
            

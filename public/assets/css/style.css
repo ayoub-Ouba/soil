@@ -117,7 +117,7 @@ html {
 }
 .wrapper .icon {
   display: block;
-  width: 110px;
+  width: 150px;
   position: relative;
   transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
@@ -144,6 +144,8 @@ html {
   opacity: 1;
   pointer-events: auto;
 }
+
+
 .icon .tooltip:before{
   position: absolute;
   content: "";
@@ -151,10 +153,22 @@ html {
   width: 15px;
   background: #fff;
   left: 70%;
-  
   bottom: -6px;
   transform: translateX(-50%) rotate(45deg);
   transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+@media only screen and (max-width: 600px) {
+  .wrapper .icon:hover .tooltip{
+    top: -35px;
+    right: -67px;}
+  .icon .tooltip:before{
+    height: 10px;
+    width: 10px;
+    left: 25%;bottom: -5px;}
+  .wrapper .icon .tooltip{
+   
+    padding: 4px 10px;
+  }
 }
 .wrapper .icon:hover {
   color: #fff;

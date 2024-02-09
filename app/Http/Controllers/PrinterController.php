@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Flash;
 
-use Carbon\Carbon;
+
+use App\Http\Flash;
 use App\Models\Produit;
 use App\Models\Commande;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Date;
 
 
@@ -19,16 +20,14 @@ class PrinterController extends Controller
         if($produit->print_design==0){
             $produit->print_design=1;
             $cmd->id_printed1=auth()->user()->id;
-            $now =carbon::now();
+            $now = DB::raw('NOW()');
             $produit->date_print_dtf =$now;
         }
         else{
             $produit->print_design=0;
         }
-    
 
         $produit->save();
-       
         $prods=$cmd->produits;
         $isPrinted1=true;
         foreach($prods as $prod){
@@ -38,7 +37,7 @@ class PrinterController extends Controller
         if($isPrinted1){
             $cmd->status="printed1";            
         }else{
-            $cmd->status="prepared";
+            $cmd->status="confirmed";
         }
         $cmd->save();
         return redirect()->route('home')->with("message_falsh",'Product is printed');
@@ -49,9 +48,10 @@ class PrinterController extends Controller
         $cmd=Commande::find($produit->id_commande);
         if($produit->print_design_v_fnl==0){
             $produit->print_design_v_fnl=1;
-            $now = Carbon::now();
+            $now = DB::raw('NOW()');
+
             $cmd->id_printed2=auth()->user()->id;
-            $produit->date_print_dtf =$now;
+            $produit->date_print_Hoodie =$now;
         }
         else
             $produit->print_design_v_fnl=0;
@@ -65,7 +65,7 @@ class PrinterController extends Controller
         }
         if($isPrinted2){
             $cmd->status="done";
-            $cmd->date_done=Date::today();
+            $cmd->date_done=DB::raw('NOW()');
             $cmd->id_printed2=auth()->user()->id;
            
         }else{
