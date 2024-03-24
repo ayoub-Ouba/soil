@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="number" class="control-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="number" name="number" value="{{$commande->number}}" required>
+                        <input type="tel" class="form-control" id="number" name="number" value="{{$commande->number}}" maxlength="10" required>
                     </div>
 
                     <div class="form-group">
@@ -81,7 +81,7 @@
                     @csrf
                     {{ method_field('DELETE') }}
                     <div class="text-center">
-                        <h6>Are you sure you want to delete:</h6>
+                        <h6>Are you sure you want to delete the order of :</h6>
                         <h2 class="bold del_employee_name">{{$commande->fullName}}</h2>
                     </div>
             </div>

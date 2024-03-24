@@ -56,18 +56,7 @@
                                         <div class="">{{$commande->datecommande}}</div> 
                                     </div>
                             </div>
-                            <div class="wrapper">
-                                    <div class="icon facebook">
-                                        <div class="tooltip" >Date Validation</div>
-                                        <div class="">{{$commande->datevalidation}}</div> 
-                                    </div>
-                            </div>
-                            <div class="wrapper">
-                                    <div class="icon facebook">
-                                        <div class="tooltip">Date Livraison</div>
-                                        <div class="">{{$commande->datelivraison}}</div> 
-                                    </div>
-                            </div>
+                           
                         </td>
                         <td style="width: 70px;">
                             @foreach ($commande->produits as $produit)

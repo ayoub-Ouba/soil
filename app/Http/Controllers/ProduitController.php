@@ -46,7 +46,11 @@ class ProduitController extends Controller
     {
         $request->validate([
             'color'=>'required','type'=>'required',
-            'design'=>'required']);
+            'design'=>'required'],
+            ['design.required'=>'You dont have any design or you are not select the design '
+
+            ]
+        );
             
         $produit=new Produit();
         $commande=Commande::find($idCmd);

@@ -87,6 +87,19 @@ html {
   width: 150px;
   white-space: pre-wrap; /* Allow whitespace to wrap and preserve line breaks */
 }
+.textarea_hidden{
+display: none;
+margin-top: 5px;
+}
+@media only screen and (max-width: 1632px) {
+  .textarea_hidden{
+    display: block;
+    }
+}
+.xyz{
+  width: 110px;
+  white-space: pre-wrap;
+}
 .container {
   position: relative;
   width: 75%;
@@ -1988,6 +2001,10 @@ button:focus {
 .pagination .page-item.active .page-link {
   background-color: #626ed4;
   border-color: #626ed4;
+}
+.pagination_persone{
+  display: flex;
+  justify-content: end;
 }
 
 /* ======

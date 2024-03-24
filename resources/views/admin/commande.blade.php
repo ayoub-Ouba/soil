@@ -44,9 +44,10 @@
                                 <th  data-priority="3"  style="width: 50px;" >Phone Number</th>
                                 <th  data-priority="4" >Address</th>
                                 <th  data-priority="7"  style="width: 20px;">Quantity</th>
-                                <th  data-priority="5" >Total Amount</th>
+                                <th  data-priority="5" >Total Amount (Dh)</th>
                                 <th  data-priority="8" >Status</th><th  data-priority="9" >Date time</th>
                                 <th  data-priority="9" >Dropshiper Comment</th>
+
                                 <th data-priority="10" >products </th>
                                 <th data-priority="6" >Action</th>
                             </tr>
@@ -66,7 +67,7 @@
                                         <b>{{$commande->city}}:</b> {{$commande->adress}}
                                     </div>
                                     </td>
-                                    <td>{{$commande->quantite}}</td> <td>{{$commande->Total}} </td><td>{{$commande->status}}</td>
+                                    <td>{{$commande->quantite}}</td> <td>{{$commande->Total}} dh </td><td>{{$commande->status}}</td>
                                     <td>
                                         <div class="wrapper">
                                                 <div class="icon facebook">
@@ -76,7 +77,7 @@
                                         </div>
                                         <div class="wrapper">
                                                 <div class="icon facebook">
-                                                    <div class="tooltip" >Date Done</div>
+                                                    <div class="tooltip" >Date Done Order</div>
                                                     <div >{{$commande->date_done}}</div> 
                                                 </div>
                                         </div>

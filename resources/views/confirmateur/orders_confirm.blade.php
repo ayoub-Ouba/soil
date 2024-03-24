@@ -5,7 +5,7 @@
 
 @section('breadcrumb')
     <div class="col-sm-6">
-        <h4 class="page-title text-left">Orders Done</h4>
+        <h4 class="page-title text-left">Orders Shiped</h4>
         {{-- <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0);">Orders Done</a></li>
@@ -37,19 +37,19 @@
                         <tr>
                             <th  data-priority="1" >ID</th>
                             <th  data-priority="2" >Dropshipper</th>
-                            <th  data-priority="3" >Dropshipper Comment</th>
-                            <th  data-priority="4" >Customer  </th>
-                            <th  data-priority="5" >Social Media</th>
-                            <th  data-priority="6" >Phone Number</th>
-                            <th  data-priority="7" >Address</th>
-                            <th  data-priority="8" >Quantity</th>
-                            <th  data-priority="9" >Total Amount</th>
-                            <th  data-priority="10" >Products </th>
-                            <th data-priority="11" > Date </th>
-                            <th data-priority="12" >Audio upload 2</th>
-                            
-                            <th data-priority="13" >Confirmation</th>
+                            <th  data-priority="3" >Dropshipper Number </th>
+                            <th  data-priority="4" >Dropshipper Comment </th>
+                            <th  data-priority="5" >Customer  </th>
+                            <th  data-priority="6" >Social Media</th>
+                            <th  data-priority="7" >Phone Number</th>
+                            <th  data-priority="8" >Address</th>
+                            <th  data-priority="9" >Quantity</th>
+                            <th  data-priority="10" >Total Amount</th>
+                            <th  data-priority="11" >Products </th>
+                            <th data-priority="12" > Date </th>
+                            <th data-priority="13" >Audio upload 2</th>
                             <th data-priority="14" >Your Comment</th>
+                            <th data-priority="15" >Confirmation</th>
                             
                         </tr>
                     </thead>
@@ -60,6 +60,7 @@
                     <tr> 
                         <td>{{$commande->id}} </td>
                         <td > {{$commande->user->fullName}} </td>
+                        <td > {{$commande->user->number}} </td>
                         <td class="{{ strlen($commande->commentaire) > 28 ? 'comment-cell' : '' }}">
                             @if($commande->commentaire != null)
                                 <div class="{{ strlen($commande->commentaire) > 28 ? 'comment_pr_1' : '' }}">
@@ -119,23 +120,7 @@
                             @endif
                             
                         </td>
-                        <td >
-                            <!-- <div class="form-check form-switch ml-3" >
-                                <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked2" name="confirmation2"  
-                                    onclick="event.preventDefault();document.getElementById('confirmation2').submit();" 
-                                {{$commande->confirmation2==1?'checked':''}} >
-                                
-                                <label class="form-check-label" for="flexSwitchCheckChecked2"></label>
-                                <form id="confirmation2" action="{{ 'confirmationfinal_order/'. $commande->id}}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div> -->
-                            <div class="form-check form-switch ml-3" >
-                                <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"   
-                                    onclick="event.preventDefault(); document.getElementById('cnf2{{ $commande->id}}').click();" {{$commande->confirmation2==1?'checked':''}}/>
-                                <a href="#confirm_cnf2{{ $commande->id}}" data-toggle="modal" id="cnf2{{ $commande->id}}"></a>
-                            </div> 
-                        </td>
+                       
                         @if($commande->commentaire_confirmateur2==null)
                             <td>
                                 
@@ -144,10 +129,10 @@
                             <form action="{{ 'commentaire2/'. $commande->id}}" method="post">
                                 @csrf
                             
-                                    <textarea name="comment" class="form-control " id="comment" cols="40" rows="2" placeholder="Your comment" ></textarea>
-                                    <div class="text-center mt-2">
+                                    <textarea name="comment" class="mt-1"  id="comment" cols="35" rows="2" placeholder="Your comment" ></textarea>
+                                    <div class=" mt-2">
                                         <button type="submit" class="btn btn-primary  btn-sm">
-                                                Submit
+                                                add
                                         </button>
                                     </div>
                             </form>
@@ -160,9 +145,18 @@
                                     {{$commande->commentaire_confirmateur2}}
                                 </div>
                             </td>
-                       
+                        
+                            @endif
+                            <td >
+                           
+                           <div class="form-check form-switch ml-3" >
+                               <input style="width: 50px;height:20px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="printer"   
+                                   onclick="event.preventDefault(); document.getElementById('cnf2{{ $commande->id}}').click();" {{$commande->confirmation2==1?'checked':''}}/>
+                               <a href="#confirm_cnf2{{ $commande->id}}" data-toggle="modal" id="cnf2{{ $commande->id}}"></a>
+                           </div> 
+                       </td>
                     </tr>
-                    @endif
+                   
                     @endforeach
                 </tbody>
             </table>

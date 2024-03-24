@@ -11,7 +11,7 @@
                     @csrf
                     <div class="text-center">
                         <h6>Are you sure the order is confirmed </h6>
-
+                        <p>Please !! make a comment for more explanations ... </p>
                     </div>
             
             </div>

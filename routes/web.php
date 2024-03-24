@@ -18,12 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login2');
 });
-Route::middleware(['auth','role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/users', '\App\Http\Controllers\UserController');
     Route::resource('/Types_products', '\App\Http\Controllers\Type_produitController');
     Route::resource('/Stockage', '\App\Http\Controllers\StorageController');
 });
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:manager'])->group(function () {
+    Route::get('/orders_mangement','\App\Http\Controllers\CommandeController@orders')->name("order_management");
+    Route::resource('/Types_products_management', '\App\Http\Controllers\Type_produitController');
+    Route::resource('/Stockage_management', '\App\Http\Controllers\StorageController');
+    Route::post('/value_select/{id}','\App\Http\Controllers\CommandeController@select_value');
+});
+
+
+Route::middleware(['auth'])->group(function () {                    
     // Route::get('home', function () {
     //     return view('admin.index');
     // });

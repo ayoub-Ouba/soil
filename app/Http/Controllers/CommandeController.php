@@ -27,6 +27,36 @@ class CommandeController extends Controller
         $designs=Design::where('id_user',auth()->user()->id)->get();
         return view("admin.commande")->with(["commandes"=>$commandes, "types_produits"=>$types_produits, "designs"=>$designs]);
     }
+    public function orders(){
+        $commandes=Commande::where('status','=','done')->orWhere('status','=','confirmed2')->paginate(4);
+        $types_produits=Type_product::all();
+        $users=User::where('state','!=','admin')->where('state','!=','manager')->get(); 
+        return view("manager.order_management")->with(["commandes"=>$commandes, "types_produits"=>$types_produits,"users"=>$users,
+        "posib"=>false]);
+    }
+    public function select_value(Request $req, $id){
+        // Retrieve parameters from the request
+        $comment = false;
+        
+        if ($req->status == "rejected") {
+            $comment = true;
+        }
+        
+        // Call orders function with parameters
+    //    return redirect()->route("order_management", ["id" => $id, "comment" => $comment]) ;  
+    return redirect()->route('order_management')->with(['id' => $id, 'comment' => $comment,'posib'=>true]);
+
+    }
+        // $commandes=Commande::where('status','=','done')->orWhere('status','=','confirmed2')->get();
+        // $types_produits=Type_product::all();
+        // $users=User::where('state','!=','admin')->where('state','!=','manager')->get(); 
+        // $comment=false;
+        // if($req->status=="rejected"){
+        //     $comment=true;
+        // }
+        // return redirect()->route('order_management')->with(["commandes"=>$commandes, "types_produits"=>$types_produits,"users"=>$users,
+        // "comment"=>$comment,"id"=>$id]);
+    //}
 
     /**
      * Show the form for creating a new resource.

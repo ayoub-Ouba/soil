@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="total">Total Amount</label>
+                            <label for="total">Total Amount (dh)</label>
                             <input type="number" class="form-control" placeholder="Enter Total" id="total" name="total" required />
                         </div>
                         <div class="form-group">
