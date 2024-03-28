@@ -31,6 +31,7 @@ class Orders_confirmController extends Controller
             $commande->confirmation=1;
             $commande->status='confirmed';
             $commande->id_confirmateur=auth()->user()->id;
+            $commande->date_confirmation_1= now();
         }
         $commande->save();
         return redirect()->route('home')->with("succes");
@@ -42,9 +43,7 @@ class Orders_confirmController extends Controller
         if($commande->confirmation2==0){
             $commande->confirmation2=1;
             $commande->status='confirmed2';
-        }else{
-            $commande->confirmation2=0;
-            $commande->status='done';
+            $commande->date_confirmation_2= now();
         }
         $commande->save();
         return redirect()->route('confirm_orderDone')->with("succes");

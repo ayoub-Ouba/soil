@@ -51,10 +51,22 @@
                         <td>{{$commande->quantite}}</td> <td>{{$commande->Total}} </td> 
                         <td >
                             <div class="wrapper">
-                                    <div class="icon facebook">
-                                        <div class="tooltip" >Date Commande</div>
-                                        <div class="">{{$commande->datecommande}}</div> 
-                                    </div>
+                                <div class="icon facebook">
+                                    <div class="tooltip" >Date Commande</div>
+                                    <div class="">{{$commande->datecommande}}</div> 
+                                </div>
+                            </div>
+                            <div class="wrapper">
+                                <div class="icon facebook">
+                                    <div class="tooltip" >Date Confirmation 1</div>
+                                    <div class="">{{$commande->date_confirmation_1}}</div> 
+                                </div>
+                            </div>
+                            <div class="wrapper">
+                                <div class="icon facebook">
+                                    <div class="tooltip" >Date Confirmation 2</div>
+                                    <div class="">{{$commande->date_confirmation_2}}</div> 
+                                </div>
                             </div>
                            
                         </td>

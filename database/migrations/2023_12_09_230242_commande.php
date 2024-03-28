@@ -27,6 +27,8 @@ class Commande extends Migration
             $table->dateTime("date_done")->nullable();
             $table->dateTime("datevalidation")->nullable();
             $table->dateTime("datelivraison")->nullable();
+            $table->dateTime("date_confirmation_1")->nullable();
+            $table->dateTime("date_confirmation_2")->nullable();
             $table->String("status")->default('prepared');
             $table->String("socialmedia");
             $table->boolean("confirmation")->default(false);
